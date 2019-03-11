@@ -4,7 +4,7 @@
 
 !.git
 
-!/aplication/controllers/
-!/aplication/libraries/
-!/aplication/views/
-!/aplication/models/
+!/application/controllers
+!/application/libraries
+!/application/views
+!/application/models
