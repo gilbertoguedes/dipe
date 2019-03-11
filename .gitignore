@@ -1,0 +1,10 @@
+*
+
+!.gitignore
+
+!.git
+
+!aplication/controllers
+!aplication/libraries
+!aplication/views
+!aplication/models
