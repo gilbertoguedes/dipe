@@ -7,7 +7,7 @@
             <aside class="col-md-3 col-lg-2 d-none d-lg-block d-xl-block pl-3">
                 <div class="card dipe-noborder">
                     <header class="dipe-card-header card-header bg-white dipe-gray-text-4-bg pl-0">
-                        MIS PRODUCTOS
+                        MIS PRODUCTOSsss
                     </header>
                     <ul class="menu-category dipe-menu-category">
                         <?php
