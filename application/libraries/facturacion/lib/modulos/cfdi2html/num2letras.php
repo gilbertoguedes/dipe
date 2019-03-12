@@ -2,10 +2,10 @@
 /*!
 @function num2letras ()
 @abstract Dado un n?mero lo devuelve escrito.
-@param $num number – N?mero a convertir.
-@param $fem bool – Forma femenina (true) o no (false).
-@param $dec bool – Con decimales (true) o no (false).
-@result string – Devuelve el n?mero escrito en letra.
+@param $num number ? N?mero a convertir.
+@param $fem bool ? Forma femenina (true) o no (false).
+@param $dec bool ? Con decimales (true) o no (false).
+@result string ? Devuelve el n?mero escrito en letra.
 */
 function num2letras($numero,$moneda_txt='PESOS')
 {
@@ -18,12 +18,12 @@ function num2letras($numero,$moneda_txt='PESOS')
 	//cambia a femenino 
 	$numalet->setGenero(1); 
 	//cambia moneda 
-//	$numalet->setMoneda("Pesetas"); 
+	$numalet->setMoneda("PESOS"); 
 	//cambia prefijo 
 	$numalet->setPrefijo(''); 
 	//cambia sufijo 
 	$numalet->setSufijo('');
-    $numalet->setMoneda($moneda_txt); 
+    //$numalet->setMoneda($moneda_txt); 
     
 	//imprime numero con los cambios 
 	return $numalet->letra(); 	
@@ -156,15 +156,15 @@ class CNumeroaLetra{
         $cnumero=sprintf("%015.2f",$this->numero); 
         $texto=""; 
         if(strlen($cnumero)>15){ 
-            $texto="Excede tamaño permitido"; 
+            $texto="Excede tama?o permitido"; 
         }else{ 
             $hay_significativo=false; 
             for ($pos=0; $pos<12; $pos++){ 
-                // Control existencia Dígito significativo  
+                // Control existencia D?gito significativo  
                    if (!($hay_significativo)&&(substr($cnumero,$pos,1) == '0')) ; 
                    else $hay_dignificativo = true; 
 
-                   // Detectar Tipo de Dígito  
+                   // Detectar Tipo de D?gito  
                    switch($pos % 3) { 
                        case 0: $texto.=$this->letraCentena($pos,$cnumero); break; 
                        case 1: $texto.=$this->letraDecena($pos,$cnumero); break; 
