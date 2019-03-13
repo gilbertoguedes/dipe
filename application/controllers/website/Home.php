@@ -690,6 +690,10 @@ class Home extends CI_Controller {
 
             $path_pdf = FCPATH.'assets/timbrados/YWQ6R1JDSHDZU7K.xml';
 
+            $path_pdf = array();
+            $path_pdf[0] = FCPATH.'assets/timbrados/YWQ6R1JDSHDZU7K.xml';
+            $path_pdf[1] = FCPATH.'assets/timbrados/YWQ6R1JDSHDZU7K.pdf';
+
             $this->Settings->send_mail_file("ajborgeslag@gmail.com",'Confirmación de facturación', $texto, $path_pdf);
 
             $content = $this->lhome->checkout_invoice($idOrder);
