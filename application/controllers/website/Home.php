@@ -688,8 +688,10 @@ class Home extends CI_Controller {
             $texto = "";
             $texto .= '<div>APRECIABLE SR. Juana María</div>';
 
-            $this->Settings->send_mail("ajborgeslag@gmail.com",'Confirmación de facturación', $texto);
-            
+            $path_pdf = FCPATH.'assets/timbrados/YWQ6R1JDSHDZU7K.xml';
+
+            $this->Settings->send_mail_file("ajborgeslag@gmail.com",'Confirmación de facturación', $texto, $path_pdf);
+
             $content = $this->lhome->checkout_invoice($idOrder);
             $this->template->full_website_html_view($content);
         }
