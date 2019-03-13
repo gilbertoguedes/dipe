@@ -685,20 +685,6 @@ class Home extends CI_Controller {
     public function checkout_invoice($idOrder){
         if ($this->user_auth->is_logged())
         {
-            $texto = "";
-            $texto .= '<div>APRECIABLE SR. Juana María</div></br>';
-            $texto .= '<div>AGRADECEMOS SU PREFERENCIA</div></br>';
-            $texto .= '<div>ADJUNTAMOS PDF Y XML DE LA FACTURA</div></br>';
-            $texto .= '<div>TE ESPERAMOS DE NUEVO EN  WWW.DIPEPSA.MX</div>';
-
-            $path_pdf = FCPATH.'assets/timbrados/YWQ6R1JDSHDZU7K.xml';
-
-            $path_pdf = array();
-            $path_pdf[0] = FCPATH.'assets/timbrados/YWQ6R1JDSHDZU7K.xml';
-            $path_pdf[1] = FCPATH.'assets/timbrados/YWQ6R1JDSHDZU7K.pdf';
-
-            $this->Settings->send_mail_file("ajborgeslag@gmail.com",'Confirmación de facturación', $texto, $path_pdf);
-
             $content = $this->lhome->checkout_invoice($idOrder);
             $this->template->full_website_html_view($content);
         }
@@ -769,6 +755,22 @@ class Home extends CI_Controller {
                 $data = array();
                 $data['timbrado'] = 1;
                 $CI->Orders->update_timbre($idOrder,$data);
+
+                $user_email = $this->session->userdata('customer_email');
+
+                $user_name = $this->session->userdata('customer_email');
+
+                $texto = "";
+                $texto .= '<div>APRECIABLE SR. '.$user_name.'</div></br>';
+                $texto .= '<div>AGRADECEMOS SU PREFERENCIA</div></br>';
+                $texto .= '<div>ADJUNTAMOS PDF Y XML DE LA FACTURA</div></br>';
+                $texto .= '<div>TE ESPERAMOS DE NUEVO EN  www.dipepsa.mx</div>';
+
+                $path_pdf = array();
+                $path_pdf[0] = FCPATH.'assets/timbrados/'.$idOrder.'.xml';
+                $path_pdf[1] = FCPATH.'assets/timbrados/'.$idOrder.'.pdf';
+
+                $this->Settings->send_mail_file($user_email,'Confirmación de facturación', $texto, $path_pdf);
 
                 redirect('/customer/order/manage_order');
 			}
