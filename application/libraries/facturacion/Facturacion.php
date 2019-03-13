@@ -67,7 +67,7 @@ class Facturacion {
 		/*$datos['emisor']['rfc'] = 'LAN7008173R5'; //RFC DE PRUEBA
 		$datos['emisor']['nombre'] = 'ACCEM SERVICIOS EMPRESARIALES SC';  // EMPRESA DE PRUEBA*/
 		
-		/*$datos['emisor']['rfc'] = 'DPP8607174L9'; //RFC DE PRUEBA
+		/*$datos['emisor']['rfc'] = 'DPP8607174L9'; //RFC DE PRUEBAA
         $datos['emisor']['nombre'] = 'DISTRIBUIDORA DE PERFUMERIA Y POPULARES S.A DE C.V';  // EMPRESA DE PRUEBA*/
 		
 		
