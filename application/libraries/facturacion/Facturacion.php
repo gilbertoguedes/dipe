@@ -125,7 +125,9 @@ class Facturacion {
 		
 		
 		// Datos del Emisor
-        $datos['emisor']['rfc'] = 'DPP8607174L9'; //RFC DE PRUEBA
+        $datos['emisor']['rfc'] = 'TVZ130830KU0'; //RFC DE PRUEBA
+        //$datos['emisor']['rfc'] = 'DPP8607174L9'; //RFC DE PRUEBA
+
         $datos['emisor']['nombre'] = 'DISTRIBUIDORA DE PERFUMERIA Y POPULARES S.A DE C.V';  // EMPRESA DE PRUEBA
 
         // Datos del Receptor
