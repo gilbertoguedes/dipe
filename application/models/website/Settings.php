@@ -117,9 +117,9 @@ class Settings extends CI_Model {
 			'smtp_user' => $this->config->item('smtp_user'),
 			'smtp_pass' => $this->config->item('smtp_pass'),
 			'smtp_crypto'=>$this->config->item('smtp_ssl'),
-			'newline'   => "\r\n"
-			/*'mailtype'  => 'html',
-			'starttls'  => true,
+			'newline'   => "\r\n",
+			'mailtype'  => 'html'
+			/*'starttls'  => true,
 			'newline'   => "\r\n"*/
 		);
 
@@ -140,8 +140,9 @@ class Settings extends CI_Model {
             'smtp_user' => $this->config->item('smtp_user'),
             'smtp_pass' => $this->config->item('smtp_pass'),
             'smtp_crypto'=>$this->config->item('smtp_ssl'),
-            /*'mailtype'  => 'html',
-            'starttls'  => true,
+            'newline'   => "\r\n",
+            'mailtype'  => 'html'
+            /*'starttls'  => true,
             'newline'   => "\r\n"*/
         );
 
