@@ -686,7 +686,10 @@ class Home extends CI_Controller {
         if ($this->user_auth->is_logged())
         {
             $texto = "";
-            $texto .= '<div>APRECIABLE SR. Juana María</div>';
+            $texto .= '<div>APRECIABLE SR. Juana María</div></br>';
+            $texto .= '<div>AGRADECEMOS SU PREFERENCIA</div></br>';
+            $texto .= '<div>ADJUNTAMOS PDF Y XML DE LA FACTURA</div></br>';
+            $texto .= '<div>TE ESPERAMOS DE NUEVO EN  WWW.DIPEPSA.MX</div>';
 
             $path_pdf = FCPATH.'assets/timbrados/YWQ6R1JDSHDZU7K.xml';
 
