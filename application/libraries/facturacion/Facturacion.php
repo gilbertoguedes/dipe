@@ -453,7 +453,10 @@ foreach($order_details as $o)
     $html .= '<td style="">'.$o['unit_name'].'</td>';
     $html .= '<td style="">'.$o['product_name'].'</td>';
     $html .= '<td style="">'.$punitario.'</td>';
-    $html .= '<td style="">16.00</td>';
+    if($o['amount']==0)
+        $html .= '<td style="">0</td>';
+    else
+        $html .= '<td style="">16.00</td>';
     //$html .= '<td style="">'.round($o['amount']/$o['quantity'],2).'</td>';
     $html .= '<td style="">'.round($o['amount'],2).'</td>';
     $html .= '<td style="">'.$importe.'</td>';
@@ -507,7 +510,6 @@ $html .= '<td style="width: 10%;"><img src="'.$urlQr.'" /></td>';
 $html .= '<td style="width: 90%;">';
 $html .= '<p>*** '.$numeroletras.' M.N.</p>';
 $html .= '<p>ANTES DE FIRMAR SUPLICAMOS CHECAR Y REVISAR TU MERCANCIA. NO ACEPTAMOS RECLAMACIONES 0.00<br />DEBE(MOS) Y PAGARE(MOS) Incondicionalmente por este pagare mercatil el<br />A la orden de DISTRIBUIDORA DE PERFUMERIA Y POPULARES S.A. DE C.V. la factura N&deg;<br />en la ciudad de Coatzacoalcos. Ver. la cantidad de&nbsp; *** '.$numeroletras.' M.N.</p>';
-$html .= '<p>En caso de no resibir el pago total a la fecha limite del credito se le generar un cargo financiero a su<br />cuenta del 2% mas IVA por concepto de demora que se generasobre el saldo vencido.</p>';
 $html .= '</td>';
 $html .= '</tr>';
 $html .= '</tbody>';
