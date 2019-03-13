@@ -192,14 +192,14 @@ class Facturacion {
 	//	echo "------"."</br></br>";
 		
 		
-        /*echo "<h1>Respuesta Generar XML y Timbrado</h1>";
+        echo "<h1>Respuesta Generar XML y Timbrado</h1>";
         foreach ($res AS $variable => $valor) {
             $valor = htmlentities($valor);
             $valor = str_replace('&lt;br/&gt;', '<br/>', $valor);
             echo "<b>[$variable]=</b>$valor<hr>";
         }
 		
-		die();*/
+		die();
 
 		if(array_key_exists('cfdi', $res))
         {
