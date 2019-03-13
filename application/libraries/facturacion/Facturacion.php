@@ -67,8 +67,8 @@ class Facturacion {
 		/*$datos['emisor']['rfc'] = 'LAN7008173R5'; //RFC DE PRUEBA
 		$datos['emisor']['nombre'] = 'ACCEM SERVICIOS EMPRESARIALES SC';  // EMPRESA DE PRUEBA*/
 		
-		$datos['emisor']['rfc'] = 'TVZ130830KU0'; //RFC DE PRUEBA
-        $datos['emisor']['nombre'] = 'DISTRIBUIDORA DE PERFUMERIA Y POPULARES S.A DE C.V';  // EMPRESA DE PRUEBA
+		/*$datos['emisor']['rfc'] = 'DPP8607174L9'; //RFC DE PRUEBA
+        $datos['emisor']['nombre'] = 'DISTRIBUIDORA DE PERFUMERIA Y POPULARES S.A DE C.V';  // EMPRESA DE PRUEBA*/
 		
 		
 
@@ -125,7 +125,7 @@ class Facturacion {
 		
 		
 		// Datos del Emisor
-        $datos['emisor']['rfc'] = 'TVZ130830KU0'; //RFC DE PRUEBA
+        $datos['emisor']['rfc'] = 'DPP8607174L9'; //RFC DE PRUEBA
         $datos['emisor']['nombre'] = 'DISTRIBUIDORA DE PERFUMERIA Y POPULARES S.A DE C.V';  // EMPRESA DE PRUEBA
 
         // Datos del Receptor
@@ -334,8 +334,8 @@ $html .= '<td style="width: 10%;"><img src="assets/website/maqueta/images/logo-d
 $html .= '<td style="width: 60%; text-align: center;">';
 $html .= '<h3 style="font-size:8pt;">DISTRIBUIDORA DE PERFUMERIA Y POPULARES<br />S.A. DE C.V</h3>';
 $html .= '<p style="font-size:8pt;">DPP8607174L9</p>';
-$html .= '<span style="font-size:8pt;">PERSONAS MORALES REGIMEN GENERAL DE LEY&nbsp;<br/><br/>CAR. COATZACOALCOS A BARRILLAS&nbsp;REDIO SAN JOAQUIN KM';
-$html .= '1+300&nbsp;COATZACOALCOS VER</span></td>';
+$html .= '<span style="font-size:8pt;">PERSONAS MORALES REGIMEN GENERAL DE LEY&nbsp;<br/><br/>CARRETERA COATZACOALCOS A BARRILLAS&nbsp;PREDIO SAN JOAQUIN KM';
+$html .= '1+300&nbsp;COATZACOALCOS, VERACRUZ</span></td>';
 $html .= '<td style="width: 40%; text-align: center;">';
 $html .= '<table style="width: 100%; float: left;" border="1" cellspacing="0"><caption>&nbsp;</caption>';
 $html .= '<tbody>';
@@ -414,12 +414,13 @@ $html .= '<table style="font-size:7pt;margin-top:5px float: left;" border="1" wi
 $html .= '<thead>';
 $html .= '<tr style="text-align: center;">';
 $html .= '<td style="width: 8%;"><strong>CLAVE SAT</strong></td>';
+$html .= '<td style="width: 8%;"><strong>CLAVE INTERNA</strong></td>';
 $html .= '<td style="width: 7%"><strong>CANTIDAD</strong></td>';
 $html .= '<td style="width: 6%"><strong>UNIDAD</strong></td>';
 $html .= '<td style="width: 20%;"><strong>DESCRIPCION</strong></td>';
 $html .= '<td style="width: 10%;"><strong>PRECIO UNITARIO</strong></td>';
 $html .= '<td style="width: 8%;"><strong>% IVA TASA</strong></td>';
-$html .= '<td style="width: 10%;"><strong>IVA </strong></td>';
+//$html .= '<td style="width: 10%;"><strong>IVA </strong></td>';
 $html .= '<td style="width: 10%"><strong>IMPORTE IVA</td>';
 $html .= '<td style="width: 10%"><strong>IMPORTE</strong></td>';
 $html .= '</tr>';
@@ -445,12 +446,13 @@ foreach($order_details as $o)
     $importe = round(($o['total_price']-($o['quantity']*$o['discount']))-$o['amount'],2);
     $html .= '<tr>';
     $html .= '<td style="">'.$o['category_clave'].'</td>';
+    $html .= '<td style="">'.$o['product_id'].'</td>';
     $html .= '<td style="">'.$o['quantity'].'</td>';
     $html .= '<td style="">'.$o['unit_name'].'</td>';
     $html .= '<td style="">'.$o['product_name'].'</td>';
     $html .= '<td style="">'.$punitario.'</td>';
     $html .= '<td style="">16.00</td>';
-    $html .= '<td style="">'.round($o['amount']/$o['quantity'],2).'</td>';
+    //$html .= '<td style="">'.round($o['amount']/$o['quantity'],2).'</td>';
     $html .= '<td style="">'.round($o['amount'],2).'</td>';
     $html .= '<td style="">'.$importe.'</td>';
     $html .= '</tr>';
@@ -465,7 +467,7 @@ $html .= '</table>';
 $html .= '<table style="font-size:7pt;width: 100%;margin-top: 1px" border="1" cellspacing="0" cellpadding="3">';
 $html .= '<tbody>';
 $html .= '<tr>';
-$html .= '<td style="width: 80%;" rowspan="5">Si se realizan pagos con cheques nominativos y estos son&nbsp;devueltos por el banco por fondos insuficientes se aplicara&nbsp;un cargo a su cuenta del 20% sobre el importe del cheque&nbsp;devuelto como indemnizacion de acuerdo con la ley de&nbsp;L.T.O.C. Art. 193 y dejaremos de surtir sus pedidos hasta el&nbsp;cobro de la indemnizacion.</td>';
+$html .= '<td style="width: 80%;" rowspan="5"></td>';
 $html .= '<td style="">SUBTOTAL</td>';
 $html .= '<td style="">'.$subtotal_.'</td>';
 $html .= '</tr>';
