@@ -12,6 +12,7 @@ class Home extends CI_Controller {
 		$this->qrgenerator();
 		$this->load->model('Customer_dashboards');
         $this->load->model('website/Products_model');
+        $this->load->model('website/Settings');
     }
 
 	//Default loading for Home Index.
@@ -684,6 +685,11 @@ class Home extends CI_Controller {
     public function checkout_invoice($idOrder){
         if ($this->user_auth->is_logged())
         {
+            $texto = "";
+            $texto .= '<div>APRECIABLE SR. Juana María</div>';
+
+            $this->Settings->send_mail("ajborgeslag@gmail.com",'Confirmación de facturación', $texto);
+            
             $content = $this->lhome->checkout_invoice($idOrder);
             $this->template->full_website_html_view($content);
         }
@@ -754,7 +760,8 @@ class Home extends CI_Controller {
                 $data = array();
                 $data['timbrado'] = 1;
                 $CI->Orders->update_timbre($idOrder,$data);
-				redirect('/customer/order/manage_order');
+
+                redirect('/customer/order/manage_order');
 			}
 			else
 			{
