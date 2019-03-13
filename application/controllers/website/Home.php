@@ -758,7 +758,7 @@ class Home extends CI_Controller {
 
                 $user_email = $this->session->userdata('customer_email');
 
-                $user_name = $this->session->userdata('customer_email');
+                $user_name = $this->session->userdata('customer_name');
 
                 $texto = "";
                 $texto .= '<div>APRECIABLE SR. '.$user_name.'</div></br>';
