@@ -151,7 +151,10 @@ class Settings extends CI_Model {
         $this->email->to($to_email);
         $this->email->subject($subject);
         $this->email->message($message);
-        $this->email->attach($file_path);
+        for($i=0;$i<count($file_path);$i++)
+        {
+            $this->email->attach($file_path[$i]);
+        }
         $this->email->send();
     }
 
