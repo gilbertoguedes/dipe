@@ -1,10 +1,13 @@
-*
+vendor/
+system/
+my-assets/
+livechat/
+ioncube/
+assets/
 
-!.gitignore
+application/*
 
-!.git
-
-!/application/controllers
-!/application/libraries
-!/application/views
-!/application/models
+!application/controllers/
+!application/models/
+!application/libraries/
+!application/views/

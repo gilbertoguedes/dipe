@@ -1,9 +1,53 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
+<script>
+    /* Set the width of the side navigation to 250px */
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+    }
+
+    /* Set the width of the side navigation to 0 */
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+    }
+</script>
+
 <div class="dipe-header-fixed-top">
+
+
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <div class="dipe-accede-regist-mobile">
+    <a href="<?php echo base_url().'login'?>" class="d-inline p-0">Accede</a>
+        <span class="dipe-mobile-vertical-separator"><span class="split-line">|</span></span>
+    <a href="<?php echo base_url().'signup'?>" class="d-inline p-0">Regístrate</a>
+    </div>
+    <div class="dipe-separator-line"></div>
+    <a href="<?php echo base_url()?>"><i class="fas fa-home mr-3"></i>Portada</a>
+    <div class="dipe-separator-line"></div>
+    <a href="/all_category">Categorías</a>
+    <a href="/product_new">Nuevos Productos</a>
+    <a href="/popular_category">Populares</a>
+    <a href="/product_oferts">En Ofertas</a>
+    <a href="/product_recomend">Recomendaciones</a>
+</div>
+
+<div class="dipe-header-mobile-bar d-lg-none">
+    <a class="dipe-header-item" onclick="openNav()">
+        <i class="fas fa-bars"></i>
+    </a>
+    <a class="dipe-header-item dipe-logo-mobile" href="<?php echo base_url()?>">
+        <img src="/assets/website/maqueta/images/logo-dipepsa.png" alt="Logo Dipepsa">
+    </a>
+    <a href="<?php echo base_url('view_cart')?>" class="dipe-header-item dipe-carrito-mobile"><i class="fas fa-shopping-cart"></i></a>
+</div>
+
+
+
+
 <section class="header-main dipe-header-main dipe-shadow">
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-lg-4-24 col-sm-5 col-4">
+            <div class="col-lg-4-24 col-sm-5 col-4 d-none d-lg-block">
                 <div class="brand-wrap">
                     <a href="<?php echo base_url()?>">
                     <img id="dipe-logo" class="dipe-logo logo" src="/assets/website/maqueta/images/logo-dipepsa.png">
@@ -11,7 +55,7 @@
                     <!--<h2 class="logo-text">LOGO</h2>-->
                 </div> <!-- brand-wrap.// -->
             </div>
-            <div class="col-lg-14-24 col-sm-12 order-3 order-lg-2">
+            <div class="col-lg-14-24 col-sm-12 order-3 order-lg-2 ">
                 <?php /* echo form_open('category_product_search')*/ ?>
                     <div class="input-group w-100">
                         <?php
@@ -72,7 +116,7 @@
                     </div>
                 <?php /*echo form_close()*/ ?>
             </div> <!-- col.// -->
-            <div class="col-lg-6-24 col-sm-7 col-8  order-2  order-lg-3">
+            <div class="col-lg-6-24 col-sm-7 col-8  order-2  order-lg-3 d-none d-lg-block">
                 <div class="d-flex justify-content-end">
                     <div class="widget-header dipe-pt-9px">
                         <!--<small class="title dipe-text-muted text-muted">Javier Alejandro !</small>-->
@@ -145,7 +189,7 @@
         </div> <!-- row.// -->
     </div> <!-- container.// -->
 </section> <!-- header-main .// -->
-<nav class="navbar navbar-expand-lg dipe-navbar-dark navbar-dark dipe-bg-secondary bg-secondary shadow-sm">
+<nav class="navbar navbar-expand-lg dipe-navbar-dark navbar-dark dipe-bg-secondary bg-secondary shadow-sm  d-none d-lg-block ">
     <div class="container-fluid dipe-top-header-menu">
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav" aria-controls="main_nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -189,5 +233,9 @@
 
         </div>
     </div> <!-- container .// -->
+
+
+
+
 </nav>
 </div>
