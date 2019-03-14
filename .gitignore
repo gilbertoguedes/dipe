@@ -8,3 +8,8 @@
 !/application/libraries
 !/application/views
 !/application/models
+
+!/application/config/routes.php
+
+!/vendor/codeigniter
+!/vendor/chriskacerguis
