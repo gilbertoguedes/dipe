@@ -1,13 +1,15 @@
-vendor/
-system/
-my-assets/
-livechat/
-ioncube/
-assets/
+*
 
-application/*
+!.gitignore
 
-!application/controllers/
-!application/models/
-!application/libraries/
-!application/views/
+!.git
+
+!/application/controllers
+!/application/libraries
+!/application/views
+!/application/models
+
+!/application/config/routes.php
+
+!/vendor/codeigniter
+!/vendor/chriskacerguis
