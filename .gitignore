@@ -1,8 +1,12 @@
-*
+vendor/
+system/
+my-assets/
+livechat/
+ioncube/
 
-!.gitignore
 
-!.git
+application/*
+assets/*
 
 !/application/controllers
 !/application/libraries
@@ -13,4 +17,4 @@
 
 !/vendor/codeigniter
 !/vendor/chriskacerguis
-!/assets/website/maqueta/css/dipe-ui.css
+!/assets/website/maqueta/css
