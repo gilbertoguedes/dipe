@@ -419,6 +419,10 @@
     .dipe-popular-caption h6{
         font-size: 0.7rem;
     }
+
+    .section-large-text{
+        width: 90% !important;
+    }
 }
 
 /*Small devices (landscape phones, less than 768px)*/
@@ -466,7 +470,7 @@
         padding: 0 0 4px 0 !important;
     }
     .section-main, .section-content{
-        padding-top: 10px !important;
+        padding-top: 112px !important;
     }
     .dipe-top-header-menu {
         margin-left: 0!important;
@@ -1373,4 +1377,14 @@ nav .pagination .active{
 }
 /*********end side menu******/
 
+.section-large-text{
+    width: 80%;
+    margin: 0 auto;
+}
 
+.section-large-text p,.section-large-text li{
+    font-size: 16px;
+    line-height: 1.5;
+    color: #434345;
+    text-align: justify;
+}
