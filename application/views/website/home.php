@@ -338,7 +338,7 @@
 
                 <div class="col-md-3 pr-0">
 
-                    <div class="hover15 column">
+                    <div class="hover15 column d-none d-md-block">
                         <div>
                         <a href="/product_new">
                         <figure>
@@ -488,8 +488,8 @@
 
                     <div class="col-md-3 pr-0">
 
-                        <div class="hover15 column">
-                            <div>
+                        <div class="hover15 column d-none d-md-block">
+                            <div class="">
                                 <a href="/product_oferts">
                                 <figure>
                                     <img src="<?php echo base_url('assets/website/maqueta/images/home-ofertas.jpg')?>" class="img-fluid " alt="Ofertas">
@@ -498,7 +498,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="col-md-9 px-5">
 
                         <!-- ============== owl slide items  ============= -->
