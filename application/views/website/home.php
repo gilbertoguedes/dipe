@@ -326,6 +326,7 @@
 <?php if($products_new){ ?>
 <!-- ========================= SECTION OFERTAS ========================= -->
 <section class="section-content padding-y dipe-bg-g section-ofertas pt-1">
+    pepe
     <div class="container">
 
         <header class="section-heading">
