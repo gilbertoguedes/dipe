@@ -425,6 +425,10 @@
     .section-large-text{
         width: 90% !important;
     }
+    .dipe-font-size-12
+    {
+        font-size: 12px !important;
+    }
 }
 
 /*Small devices (landscape phones, less than 768px)*/
