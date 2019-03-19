@@ -2,7 +2,7 @@
 <!-- ========== CheckOut Area -->
 <section class="checkout section-content bg padding-y-sm dipe-section-content">
     <div class="container">
-        <div class="card p-5">
+        <div class="card p-lg-5">
 
             <div class="row justify-content-center">
                 <div class="col-md-5 col-sm-6 col-lg-4">
@@ -40,15 +40,15 @@
 
                 <!-- SmartWizard html -->
                 <div id="wizard_form">
-                    <ul>
+                    <ul class="p-1">
                         <li><a href="#step-3"><?php /*echo display('electronic_billing')*/ echo "Datos del Receptor"?></a></li>
                         <li><a href="#step-4"><?php /*echo display('electronic_billing')*/ echo "Comprobante"?></a></li>
                     </ul>
 
                     <div class="wizard_inner">
                         <div id="step-3">
-                            <div class="row justify-content-center mt-5">
-                                <div class="p-xs-0 p-md-2 p-lg-4 col-lg-9">
+                            <div class="row justify-content-center mt-4 pt-3 pr-3 pb-1 pl-3">
+                                <div class="p-xs-0 p-md-2 p-lg-1 pt-lg-3 col-lg-9">
                                     <div id="select-step-0" role="form" data-toggle="validator" >
                                         <div class="form-group">
                                             <label  class="control_label"><?php echo "Uso de CDFI";/*display('kind_of_person')*/?> <i class="text-danger">*</i></label>
@@ -69,8 +69,8 @@
                                 </div>
                             </div>
                             <?php if ($admin_profile_invoice_data_list) { ?>
-                            <div class="row justify-content-center mt-5">
-                                <div class="card p-xs-0 p-md-2 p-lg-4 col-lg-9">
+                            <div class="row justify-content-center  p-3">
+                                <div class=" p-xs-0 p-md-2 p-lg-0 col-lg-9">
                                     <form class="bs-example" action="">
                                         <div class="panel-group" id="accordion">
                                             <?php foreach($admin_profile_invoice_data_list as $data) { ?>
@@ -110,15 +110,15 @@
 
                             </div>
                             <?php } ?>
-                            <div class="row justify-content-center mt-5">
-                                <div class="card p-xs-0 p-md-2 p-lg-4 col-lg-9 mb-5">
+                            <div class="row justify-content-center mt-3">
+                                <div class="card p-xs-0 p-md-2 p-lg-4 col-10 mb-5">
                                     <div class="form-check dipe-gray-1-bg p-3" id="group_edit_data">
                                         <input class="form-check-input ml-2" onclick="checkboxEditData()" type="checkbox"  id="checkbox_customer_edit_data">
                                         <label class="form-check-label ml-4" for="checkbox_customer_edit_data">
                                             Editar Formulario
                                         </label>
                                     </div>
-                                    <div class="form-check dipe-gray-1-bg p-3 mb-4">
+                                    <div class="form-check dipe-gray-1-bg p-3 mt-2 mb-4">
                                         <input type="hidden" id="idOrder"  name="idOrder" value="<?php echo $idOrder; ?>"/>
                                         <input type="hidden" id="customer_save_data"  name="customer_save_data" value="<?php if ($admin_profile_invoice_data_list) { echo '0'; }else{echo '1';}?>"/>
                                         <input class="form-check-input ml-2" onclick="checkboxSaveData()"  type="checkbox" <?php if ($admin_profile_invoice_data_list==false) { echo 'checked'; }?>  id="checkbox_customer_save_data">
@@ -245,7 +245,7 @@
 <script type="text/javascript">
     $(document).ready(function(){
         // Toolbar extra buttons
-        var btnFinish = $('<button></button>').text('Facturar').addClass('btn submit_btn').prop('disabled',true).on('click', function(){
+        var btnFinish = $('<button></button>').text('Facturar').addClass('btn submit_btn dipe-font-size-12').prop('disabled',true).on('click', function(){
             if( !$(this).hasClass('disabled')){
                 var elmForm = $("#myForm");
                 if(elmForm){
@@ -267,12 +267,12 @@
         });
 
 
-        var btnCancel = $('<button></button>').text('Cancelar').addClass('btn btn_cancel').on('click', function(){
+        var btnCancel = $('<button></button>').text('Cancelar').addClass('btn btn_cancel dipe-font-size-12').on('click', function(){
             $('#wizard_form').smartWizard("reset");
             $('#myForm').find("input, textarea").val("");
         });
 
-        var btnFacOtherMoment = $('<button></button>').text('Facturar en otro momento').addClass('btn btn-danger btn-block mr-5').on('click', function(){
+        var btnFacOtherMoment = $('<button></button>').text('Facturar en otro momento').addClass('btn btn-danger btn-block mr-lg-5 mr-md-5 dipe-font-size-12').on('click', function(){
             window.location.href = "<?php echo base_url(); ?>";
         });
 
@@ -335,6 +335,8 @@
             }
         });
 
+        $('.sw-btn-next').addClass('dipe-font-size-12');
+        $('.sw-btn-prev').addClass('dipe-font-size-12');
         $('.sw-btn-next').html('Siguiente');
         $('.sw-btn-prev').html('Anterior');
 
