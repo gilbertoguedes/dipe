@@ -245,7 +245,7 @@
 <script type="text/javascript">
     $(document).ready(function(){
         // Toolbar extra buttons
-        var btnFinish = $('<button></button>').text('Facturar').addClass('btn submit_btn dipe-font-size-12').prop('disabled',true).on('click', function(){
+        var btnFinish = $('<button></button>').text('Facturar').addClass('btn dipe-border-radius-left submit_btn dipe-font-size-12').prop('disabled',true).on('click', function(){
             if( !$(this).hasClass('disabled')){
                 var elmForm = $("#myForm");
                 if(elmForm){
@@ -267,12 +267,12 @@
         });
 
 
-        var btnCancel = $('<button></button>').text('Cancelar').addClass('btn btn_cancel dipe-font-size-12').on('click', function(){
+        var btnCancel = $('<button></button>').text('Cancelar').addClass('btn btn_cancel dipe-font-size-12 mr-2').on('click', function(){
             $('#wizard_form').smartWizard("reset");
             $('#myForm').find("input, textarea").val("");
         });
 
-        var btnFacOtherMoment = $('<button></button>').text('Facturar en otro momento').addClass('btn btn-danger btn-block mr-lg-5 mr-md-5 dipe-font-size-12').on('click', function(){
+        var btnFacOtherMoment = $('<button></button>').text('Facturar en otro momento').addClass('btn btn-danger dipe-border-radius-right mr-lg-5 mr-md-5 dipe-font-size-12').on('click', function(){
             window.location.href = "<?php echo base_url(); ?>";
         });
 

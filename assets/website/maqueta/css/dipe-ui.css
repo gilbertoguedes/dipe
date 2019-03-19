@@ -1400,3 +1400,11 @@ nav .pagination .active{
     display: none !important;
 }
 
+.dipe-border-radius-right{
+    border-top-right-radius: 0.25rem !important;
+    border-bottom-right-radius: 0.25rem !important;
+}
+.dipe-border-radius-left{
+    border-top-left-radius: 0.25rem !important;
+    border-bottom-left-radius: 0.25rem !important;
+}
