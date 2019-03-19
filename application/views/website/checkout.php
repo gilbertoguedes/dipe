@@ -2,7 +2,7 @@
 if ($this->cart->contents()) { ?>
 <section class="checkout section-content bg padding-y-sm dipe-section-content">
     <div class="container">
-        <div class="card p-5">
+        <div class="card p-2">
             <div class="row justify-content-center">
                 <div class="col-md-5 col-sm-6 col-lg-4">
                     <?php
@@ -36,8 +36,8 @@ if ($this->cart->contents()) { ?>
                 </div>
             </div>
             <form action="<?php echo base_url('submit_checkout')?>" onsubmit="this.querySelectorAll('input').forEach(i => i.disabled = false)" id="myForm" role="form" data-toggle="validator" method="post" accept-charset="utf-8" >
-                <div id="wizard_form">
-                    <ul>
+                <div id="wizard_form" >
+                    <ul class="p-3">
                         <?php if (! $this->user_auth->is_logged()) { ?>
                             <!--<li><a href="#step-1"><?php echo display('checkout_options')?></a></li>-->
                         <?php } ?>
@@ -48,10 +48,10 @@ if ($this->cart->contents()) { ?>
 
                     <div class="wizard_inner">
                         <div id="step-1">
-                            <div class="row justify-content-center mt-5">
-                                <div class="p-xs-0 p-md-2 p-lg-4 col-lg-6">
+                            <div class="row justify-content-center mt-2">
+                                <div class="p-xs-0 p-sm-0 p-md-2 p-lg-2 col-lg-6 ">
                                     <div id="select-step-0" role="form" data-toggle="validator" >
-                                        <div class="form-group">
+                                        <div class="form-group p-2">
                                             <input type="hidden" name="customer_email" value="<?php echo $this->session->userdata('customer_email'); ?>"/>
                                             <h6 class="dipe-h6"> Variante de entrega <i class="text-danger">*</i></h6>
                                             <select class="form-control" name="customer_variant" id="customer_variant" required data-required-error="Campo obligatorio.">
@@ -64,8 +64,8 @@ if ($this->cart->contents()) { ?>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row justify-content-center" id="go-to-take">
-                                <div class="box mt-sm-1 col-lg-9 mt-md-2 mt-lg-3 dipe-color-6 mb-lg-5">
+                            <div class="row justify-content-center p-2" id="go-to-take">
+                                <div class="box mt-sm-1 col-10 mt-md-2 mt-lg-3 dipe-color-6 mb-lg-5">
                                     <dl class="dlist-inline">
                                         <dt>Compañia: </dt>
                                         <dd> <?php echo $company_info['company_name']; ?></dd>
@@ -94,8 +94,8 @@ if ($this->cart->contents()) { ?>
                             </div>
 
                             <?php if ($admin_profile_send_data_list) { ?>
-                            <div class="row justify-content-center mt-3 mb-5" id="send-data-profile">
-                                <div class="card p-xs-0 p-md-2 p-lg-4 col-lg-9">
+                            <div class="row justify-content-center mt-2 mb-3" id="send-data-profile">
+                                <div class="card p-0 col-10">
                                     <form class="bs-example" action="">
                                         <div class="panel-group" id="accordion">
                                             <?php foreach($admin_profile_send_data_list as $data) { ?>
@@ -154,15 +154,15 @@ if ($this->cart->contents()) { ?>
                             </div>
                             <?php } ?>
 
-                            <div class="row justify-content-center mt-2 mb-5" id="send-data-form">
-                                <div class="card p-xs-0 p-md-2 p-lg-4 col-lg-9 mb-5">
+                            <div class="row justify-content-center mt-0 mb-5 p-0" id="send-data-form">
+                                <div class="card p-xs-0 p-md-2 p-lg-4 col-10 mb-5">
                                     <div class="form-check dipe-gray-1-bg p-3" id="group_edit_data">
                                         <input class="form-check-input ml-2" onclick="checkboxEditData()" type="checkbox"  id="checkbox_customer_edit_data">
                                         <label class="form-check-label ml-4" for="checkbox_customer_edit_data">
                                             Editar Formulario
                                         </label>
                                     </div>
-                                    <div class="form-check dipe-gray-1-bg p-3 mb-4">
+                                    <div class="form-check dipe-gray-1-bg p-3 mb-4 mt-2">
                                         <input type="hidden" id="customer_save_data"  name="customer_save_data" value="<?php if ($admin_profile_send_data_list) { echo '0'; }else{echo '1';}?>"/>
                                         <input class="form-check-input ml-2" onclick="checkboxSaveData()" type="checkbox" <?php if ($admin_profile_send_data_list==false) { echo 'checked'; }?> id="checkbox_customer_save_data">
                                         <label class="form-check-label ml-4" for="checkbox_customer_save_data">
@@ -170,41 +170,41 @@ if ($this->cart->contents()) { ?>
                                         </label>
                                     </div>
                                     <div class="form-row" id="form-row1-step-0" role="form" data-toggle="validator">
-                                        <div class="col form-group">
+                                        <div class="col-sm-1 col-md-6 form-group">
                                             <label>Recibe</label>
                                             <input type="text" placeholder="<?php echo display('names') ?>" class="form-control" id="customer_name" name="customer_name" data-required-error="Campo obligatorio." />
                                             <div class="help-block with-errors"></div>
                                         </div> <!-- form-group end.// -->
-                                        <div class="col form-group">
+                                        <div class="col-sm-1 col-md-6 form-group">
                                             <label>Teléfono</label>
                                             <input type="text" placeholder="<?php echo display('phone_number') ?>" class="form-control" id="customer_phone_number" name="customer_phone_number" data-required-error="Campo obligatorio."  />
                                             <div class="help-block with-errors"></div>
                                         </div> <!-- form-group end.// -->
                                     </div> <!-- form-row end.// -->
                                     <div class="form-row" id="form-row2-step-0" role="form" data-toggle="validator">
-                                        <div class="col form-group">
+                                        <div class="col-sm-1 col-md-6  form-group">
                                             <label>Calle</label>
                                             <input type="text" placeholder="<?php echo display('street') ?>" class="form-control" id="customer_street" name="customer_street" data-required-error="Campo obligatorio." data-required-error="Campo obligatorio."/>
                                             <div class="help-block with-errors"></div>
                                         </div> <!-- form-group end.// -->
-                                        <div class="col form-group">
+                                        <div class="col-sm-1 col-md-6 form-group">
                                             <label>Número exterior</label>
                                             <input type="text" placeholder="<?php echo display('exter_number') ?>" class="form-control" id="customer_exter_number" name="customer_exter_number" data-required-error="Campo obligatorio." />
                                             <div class="help-block with-errors"></div>
                                         </div> <!-- form-group end.// -->
                                     </div>
                                     <div class="form-row" id="form-row3-step-0" role="form" data-toggle="validator">
-                                        <div class="col form-group">
+                                        <div class="col-sm-1 col-md-4 form-group">
                                             <label>Número interior</label>
                                             <input type="text" placeholder="<?php echo display('inter_number') ?>" class="form-control" id="customer_inter_number" name="customer_inter_number" />
                                             <div class="help-block with-errors"></div>
                                         </div> <!-- form-group end.// -->
-                                        <div class="col form-group">
+                                        <div class="col-sm-1 col-md-4 form-group">
                                             <label>Entre</label>
                                             <input type="text" placeholder="<?php echo display('between') ?>" class="form-control" id="customer_between1" name="customer_between1" data-required-error="Campo obligatorio."/>
                                             <div class="help-block with-errors"></div>
                                         </div> <!-- form-group end.// -->
-                                        <div class="col form-group">
+                                        <div class="col-sm-1 col-md-4 form-group">
                                             <label>Entre</label>
                                             <input type="text" placeholder="<?php echo display('between') ?>" class="form-control" id="customer_between2" name="customer_between2" data-required-error="Campo obligatorio."/>
                                             <div class="help-block with-errors"></div>
@@ -577,7 +577,7 @@ if ($this->cart->contents()) { ?>
 <script type="text/javascript">
     $(document).ready(function(){
         // Toolbar extra buttons
-        var btnFinish = $('<button></button>').text('<?php echo "Pagar";?>').addClass('btn submit_btn').prop('disabled',true).on('click', function(){
+        var btnFinish = $('<button></button>').text('<?php echo "Pagar";?>').addClass('btn submit_btn dipe-font-size-12').prop('disabled',true).on('click', function(){
             if( !$(this).hasClass('disabled')){
                 var elmForm = $("#myForm");
                 if(elmForm){
@@ -597,7 +597,7 @@ if ($this->cart->contents()) { ?>
                 }
             }
         });
-        var btnCancel = $('<button></button>').text('Cancelar').addClass('btn btn_cancel').on('click', function(){
+        var btnCancel = $('<button></button>').text('Cancelar').addClass('btn btn_cancel dipe-font-size-12 mr-2').on('click', function(){
             $('#wizard_form').smartWizard("reset");
             $('#myForm').find("input, textarea").val("");
         });
@@ -670,6 +670,9 @@ if ($this->cart->contents()) { ?>
 
         $('.sw-btn-next').html('Siguiente');
         $('.sw-btn-prev').html('Anterior');
+        $('.sw-btn-next').addClass('dipe-font-size-12');
+        $('.sw-btn-prev').addClass('dipe-font-size-12');
+
 
     });
 </script>
