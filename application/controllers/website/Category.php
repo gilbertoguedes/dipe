@@ -80,6 +80,8 @@ class Category extends CI_Controller {
         else
         {
             $product_name = str_replace("%20"," ",$product_name);
+            /*echo $product_name;
+            die();*/
         }
 
         $stores = $this->Stores->store_list();

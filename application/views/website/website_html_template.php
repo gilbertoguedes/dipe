@@ -303,21 +303,26 @@
        const distanceY = window.pageYOffset ||
        document.documentElement.scrollTop,
            shrinkOn = 100,
-           dipeLogo = document.getElementById('dipe-logo'),
-           storeName = document.getElementById('store_name')
-           cardIcon = document.getElementById('store_name')
-
-
+           dipeLogo = document.getElementById('dipe-logo')
 
        if(distanceY > shrinkOn)
        {
            dipeLogo.classList.add("dipe-logo-smaller");
-           storeName.classList.add("store-name-smaller");
+           document.getElementById('dipe-address-store').classList.add('display-none');
+           if(document.getElementById('dipe-welcome')!=null)
+           {
+               document.getElementById('dipe-welcome').classList.add('display-none');
+
+           }
        }
        else
        {
            dipeLogo.classList.remove("dipe-logo-smaller");
-           storeName.classList.remove("store-name-smaller");
+           document.getElementById('dipe-address-store').classList.remove('display-none');
+           if(document.getElementById('dipe-welcome')!=null)
+           {
+               document.getElementById('dipe-welcome').classList.remove('display-none');
+           }
        }
    }
 

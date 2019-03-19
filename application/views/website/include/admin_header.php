@@ -125,7 +125,7 @@
                             <a href="<?php echo base_url().'login'?>" class="btn ml-2 dipe-btn-warning btn-warning">Accede</a>
                         </div>
                         <?php }else{ ?>
-                        <label class="dipe-welcome"><?php echo display('welcome'); ?> <?php echo $this->session->userdata('customer_name'); ?> a <h4 id="store_name"><?php echo $nameStoreShow; ?></h4> </label>
+                        <label id="dipe-welcome" class="dipe-welcome"><?php echo display('welcome'); ?> <?php echo $this->session->userdata('customer_name'); ?> a <h4 id="store_name"><?php echo $nameStoreShow; ?></h4> </label>
                         <?php } ?>
                     </div>
                     <!--<div class="dropdown">
@@ -181,7 +181,7 @@
                         </div>
                     </div>
                 </div> <!-- widgets-wrap.// -->
-                <div class="d-flex justify-content-end">
+                <div id="dipe-address-store" class="d-flex justify-content-end">
                     <label class="dipe-address-store"> <?php echo $addresStoreshow; ?> </label>
                 </div>
             </div> <!-- col.// -->
