@@ -150,3 +150,11 @@ $route['translate_uri_dashes'] 	= FALSE;
 
 $route['api_category_product_search_url/(:any)/(:any)/(:any)'] = 'rest/CProductos/category_product_search_url/$1/$2/$3';
 $route['api_category_product_search_url/(:any)/(:any)/(:any)/(:num)'] = 'rest/CProductos/category_product_search_url/$1/$2/$3/$4';
+
+$route['api_categories_deparment'] = 'rest/CCategories/categories_deparment';
+
+$route['api_categories_all'] = 'rest/CCategories/categories_all';
+
+$route['api_get_products_by_category/(:any)'] = 'rest/CProductos/get_products_by_category/$1';
+$route['api_get_products_by_category/(:any)/(:num)'] = 'rest/CProductos/get_products_by_category/$1/$2';
+

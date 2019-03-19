@@ -123,6 +123,21 @@ class Categories extends CI_Model {
 		return false;
 	}
 
+	public function son_of_parent_list2($subparent,$parent)
+	{
+		$this->db->select('*');
+		$this->db->from('product_category');
+		$this->db->where('status',1);
+		$this->db->where('parent_category_id',$subparent);
+		$this->db->where('parent_category_nivel2',$parent);
+		$this->db->order_by('category_name','asc');
+		$query = $this->db->get();
+		if ($query->num_rows() > 0) {
+			return $query->result_array();
+		}
+		return false;
+	}
+
 	//Parent category List
 	public function parent_category_list($category_id)
 	{
