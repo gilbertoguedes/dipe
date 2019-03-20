@@ -1408,3 +1408,7 @@ nav .pagination .active{
     border-top-left-radius: 0.25rem !important;
     border-bottom-left-radius: 0.25rem !important;
 }
+
+.dipe-detailpage-owl-carousel .owl-prev{
+    margin-left: 1.2rem !important;
+}
