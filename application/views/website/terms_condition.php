@@ -33,7 +33,7 @@
             </ul>
             <p>c) Cancelación de pedido.</p>
             <p>
-                A petición del usuario Dipepsa podrá cancelar total o parcialmente el pedido vía telefónica al _____________________ o por correo electrónico al correo______________________
+                A petición del usuario Dipepsa podrá cancelar total o parcialmente el pedido vía telefónica al (921)270-8785 o por correo electrónico al correo ecommerce.dipepsa@gmail.com
             </p>
             <p>Una vez confirmado el pedido vía telefónica, no habrá cancelaciones.</p>
             <p>Asimismo, en el caso de que el Usuario no sea localizado al número de teléfono proporcionado
