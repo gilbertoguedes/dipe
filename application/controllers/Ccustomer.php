@@ -93,6 +93,7 @@ class Ccustomer extends CI_Controller {
             $customer_id = $this->Signups->user($email);
             if($this->Signups->update_reset_password_code($customer_id,$data))
             {
+                $this->Settings->send_mail($email,'Código: ', $password_code);
                 $this->session->set_userdata(array('message'=>'Código de activación enviado'));
                 redirect(base_url('/Ccustomer/manage_customer'));
             }
