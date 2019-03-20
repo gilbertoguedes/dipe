@@ -380,7 +380,7 @@ if (!empty($currency_new_id)) {
                 <div class="col-md-12 px-5">
 
                     <!-- ============== owl slide items  ============= -->
-                    <div class="owl-carousel owl-init slide-items" data-items="5" data-margin="20" data-dots="false" data-nav="true">
+                    <div class="dipe-detailpage-owl-carousel owl-carousel owl-init slide-items" data-items="5" data-margin="20" data-dots="false" data-nav="true">
                         <?php if($related_product){ ?>
 
                         <?php foreach($related_product as $prod){ ?>
