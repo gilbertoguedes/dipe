@@ -267,6 +267,11 @@ class Lsetting {
 		$CI->load->model('Soft_settings');
 		$CI->load->model('Blocks');
 		$CI->load->model('website/Settings');
+        $CI->load->model('Stores');
+
+        $stores = $CI->Stores->store_list();
+
+        $store_default = $CI->Stores->store_default()->store_id;
 		$parent_category_list 	= $CI->Logins->parent_category_list();
 		$pro_category_list 		= $CI->Logins->category_list();
 		$best_sales 			= $CI->Logins->best_sales();
@@ -280,6 +285,7 @@ class Lsetting {
 		$currency_info 			= $CI->Homes->currency_info();
 		$selected_currency_info = $CI->Homes->selected_currency_info();
 		$about_us_info 			= $CI->Settings->about_info($page_id);
+
 
 		$data = array(
 				'title' 		=> display('terms_condition'),
@@ -299,6 +305,8 @@ class Lsetting {
 				'selected_cur_id' => (($selected_currency_info->currency_id)?$selected_currency_info->currency_id:""),
 				'currency' 		=> $currency_details[0]['currency_icon'],
 				'position' 		=> $currency_details[0]['currency_position'],
+                'stores'        => $stores,
+                'store_default' => $store_default
 			);
 		$HomeForm = $CI->parser->parse('website/terms_condition',$data,true);
 		return $HomeForm;

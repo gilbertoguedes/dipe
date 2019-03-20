@@ -90,10 +90,9 @@
 										<td>
 											<center>
 											<?php echo form_open()?>
+												<a href="<?php echo base_url().'Ccustomer/customer_send_code/{customer_id}'; ?>" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="left" title="<?php echo 'Enviar Código de Activación'; ?>"><i class="fa fa-qrcode" aria-hidden="true"></i></a>
 												<a href="<?php echo base_url().'Ccustomer/customer_update_form/{customer_id}'; ?>" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="left" title="<?php echo display('show') ?>"><i class="fa fa-search" aria-hidden="true"></i></a>
-
 												<a href="<?php echo base_url('Ccustomer/customer_delete/{customer_id}')?>" class="btn btn-danger btn-sm" onclick="return confirm('<?php echo display('are_you_sure_want_to_delete')?>');" data-toggle="tooltip" data-placement="right" title="" data-original-title="<?php echo display('delete') ?> "><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-
 											<?php echo form_close()?>
 											</center>
 										</td>
