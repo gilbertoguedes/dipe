@@ -6,6 +6,8 @@ class Ccustomer extends CI_Controller {
 		$this->load->library('lcustomer');
 		$this->load->model('Customers');
 		$this->auth->check_admin_store_auth();
+        $this->load->model('website/customer/Signups');
+        $this->load->model('website/Settings');
     }
 
 	//Default loading for Customer System.
@@ -75,6 +77,35 @@ class Ccustomer extends CI_Controller {
 		$content = $this->lcustomer->customer_edit_data($customer_id);
 		$this->template->full_admin_html_view($content);
 	}
+
+	public function customer_send_code($customer_id)
+    {
+        $customer = $this->Customers->customer_by_id($customer_id);
+        $email = $customer[0]['customer_email'];
+
+        if($this->Signups->user_exist($email))
+        {
+            $password_code = $this->auth->generator(15);
+            $data = array(
+                'reset_password_code'=> $password_code
+            );
+
+            $customer_id = $this->Signups->user($email);
+            if($this->Signups->update_reset_password_code($customer_id,$data))
+            {
+                $this->session->set_userdata(array('message'=>'Código de activación enviado'));
+                redirect(base_url('/Ccustomer/manage_customer'));
+            }
+            else
+            {
+                $this->session->set_userdata(array('error_message'=>'Error al generar el código de restablecer contraseña'));
+                redirect(base_url('/Ccustomer/manage_customer'));
+            }
+
+        }
+        $this->session->set_userdata(array('error_message'=>'No existe el correo de usuario'));
+        redirect(base_url('/Ccustomer/manage_customer'));
+    }
 
 	// customer Update
 	public function customer_update()

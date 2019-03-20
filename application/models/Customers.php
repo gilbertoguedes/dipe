@@ -21,6 +21,20 @@ class Customers extends CI_Model {
 		return false;
 	}
 
+    public function customer_by_id($customer_id)
+    {
+        $this->db->select('*');
+        $this->db->from('customer_information');
+        $this->db->where('customer_id',$customer_id);
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            return $query->result_array();
+        }
+        return false;
+    }
+
+
+
     public function admin_profile_send_data_list($customer_id)
     {
         $this->db->select('*');
