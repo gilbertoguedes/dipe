@@ -1185,6 +1185,16 @@ class Home extends CI_Controller {
         $html .= '<td style="width: 400px">Descripción</td>';
         $html .= '<td style="width: 100px">Precio</td>';
         $html .= '</tr>';
+        $orderDetails = $order['order_details'];
+        foreach($orderDetails as $o)
+        {
+            $html .= '<tr>';
+            $html .= '<td style="width: 100px">'.$o['product_id'].'</td>';
+            $html .= '<td style="width: 100px">'.$o['product_name'].'</td>';
+            $importe = round(($o['total_price']-($o['quantity']*$o['discount'])),2);
+            $html .= '<td style="width: 100px">'.$importe.'</td>';
+            $html .= '</tr></br>';
+        }
         $html .= '</tbody>';
         $html .= '</table></br>';
         $html .= '<div>TOTAL: $'.$order['order']->total_amount.'</div></br>';
