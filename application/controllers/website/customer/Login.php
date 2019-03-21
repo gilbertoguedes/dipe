@@ -55,7 +55,12 @@ class Login extends CI_Controller {
             $customer_id = $this->Signups->user($email);
             if($this->Signups->update_reset_password_code($customer_id,$data))
             {
-                $this->Settings->send_mail($email,'Código: ', $password_code);
+                $html = "";
+                $html .= '<div>HOLA:</div></br>';
+                $html .= '<div>Nos has solicitado un código para restablecer tu contraseña si no hace caso omiso a este email</div></br>';
+                $html .= '<div>Código: '.$password_code.'</div></br>';
+                $html .= '<div>Para ello, pulsa en el siguiente enlace: <a href="http://dipepsa.mx/code_password">Restablecer contraseña</a></div></br>';
+                $this->Settings->send_mail($email,'Código: ', $html);
                 redirect(base_url('code_password'));
             }
             else
