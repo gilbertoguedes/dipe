@@ -1152,12 +1152,45 @@ class Home extends CI_Controller {
 
         //pass the transaction data to view
     	$return_order_id = $this->Homes->order_entry($customer_id,$order_id,$store_id);
-        $result   		 = $this->order_inserted_data($return_order_id);
+        $result   = $this->order_inserted_data($return_order_id);
+
+        $order  = $this->lorder->order_by_id($order_id);
+
+        $html = $this->generate_html($order);
+
+        $user_email = $this->session->userdata('customer_email');
+        $this->Settings->send_mail_file($user_email,'Confirmación de compra', $html);
+
 		if ($result) {
 			$this->cart->destroy();
 			$this->session->set_userdata('message',display('product_successfully_order'));
 			redirect('/checkout_invoice/'.$order_id);
         }
+    }
+
+    public function generate_html($order)
+    {
+        $this->load->library('occational');
+        $fechaCompra = $this->occational->dateConvert($order['order']->date);
+        $user_name = $this->session->userdata('customer_name');
+        $html = "";
+        $html .= '<div>HOLA: '.$user_name.'</div></br>';
+        $html .= '<div>Gracias por tu compra el '.$fechaCompra.'</div></br>';
+        $html .= '<div>DATOS GENERALES DEL PEDIDO</div></br>';
+        $html .= '<div>Número de pedido: '.$order['order']->order.'</div></br>';
+        $html .= '<table>';
+        $html .= '<tbody>';
+        $html .= '<tr>';
+        $html .= '<td style="width: 100px">Código</td>';
+        $html .= '<td style="width: 400px">Descripción</td>';
+        $html .= '<td style="width: 100px">Precio</td>';
+        $html .= '</tr>';
+        $html .= '</tbody>';
+        $html .= '</table></br>';
+        $html .= '<div>TOTAL: $'.$order['order']->total_amount.'</div></br>';
+        /*$html .= '<div>ADJUNTAMOS PDF Y XML DE LA FACTURA # '.$order['order']->order.' </div></br>';
+        $html .= '<div>TE ESPERAMOS DE NUEVO EN  www.dipepsa.mx</div>';*/
+        return $html;
     }
 
     //Paypal cancel

@@ -348,6 +348,18 @@ class Homes extends CI_Model {
 		return false;
 	}
 
+	public function order($order_id)
+    {
+        $this->db->select('*');
+        $this->db->from('order');
+        $this->db->where('order_id',$order_id);
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            return $query->row();
+        }
+        return false;
+    }
+
 	//Order entry
 	public function order_entry($customer_id,$order_id,$store_id){
 
