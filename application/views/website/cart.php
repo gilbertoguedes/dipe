@@ -54,16 +54,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             </figcaption>
                         </figure>
                     </td>
+<!--                    begin-->
                     <td>
-                        <div class="input-group mb-3">
-                            <!--<input type="text" class="form-control" placeholder="3" aria-label="Cantidad">-->
-                            <?php echo form_input(array('class' => 'text-center','name' => $i.'[qty]', 'value' => $items['qty'], 'maxlength' => '3', 'size' => '5')); ?>
-                            <div class="input-group-append">
-                                <!--<button class="btn btn-outline-secondary" type="button"><i class="fas fa-sync-alt"></i></button>-->
-                                <button class="btn btn-outline-secondary" type="submit"><i class="fas fa-sync-alt"></i></button>
-                            </div>
-                        </div>
+                        <dl class="dlist-inline">
+                            <dd>
+                                <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 1 ) result.value--;return false;" class="reduced items-count" type="button">
+                                    <i class="fa fa-angle-down"></i>
+                                </button>
+                                <input class="dipe-cart-cantidad-upanddown" type="text" name = "<?php echo $i.'[qty]'; ?>" id="sst" maxlength="12" value="<?php echo $items['qty']; ?>" title="<?php echo display('quantity') ?>" class="input-text qty" min="1">
+                                <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;" class="increase items-count" type="button">
+                                    <i class="fa fa-angle-up"></i>
+                                </button>
+                                <div class="input-group-append d-inline">
+                                    <!--<button class="btn btn-outline-secondary" type="button"><i class="fas fa-sync-alt"></i></button>-->
+                                    <button class="btn btn-outline-secondary" type="submit"><i class="fas fa-check"></i></button>
+                                </div>
+                                <!--aki va el componente ke esta en el ecomerce viejo-->
+                            </dd>
+<!--                           aki-->
+                        </dl>  <!-- item-property .// -->
+
                     </td>
+<!--                    end-->
                     <td>
                         <div class="price-wrap">
                             <var class="price">MX <?php echo (($position==0)?$currency . $this->cart->format_number($items['price']):$this->cart->format_number($items['price']). $currency) ?></var>
