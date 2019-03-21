@@ -1412,3 +1412,6 @@ nav .pagination .active{
 .dipe-detailpage-owl-carousel .owl-prev{
     margin-left: 1.2rem !important;
 }
+.dipe-cart-cantidad-upanddown{
+    width: 40%;
+}
