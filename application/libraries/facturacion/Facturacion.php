@@ -109,7 +109,7 @@ class Facturacion {
         // Datos de la Factura
 		$datos['factura']['condicionesDePago'] = '';
 		$datos['factura']['fecha_expedicion'] = date('Y-m-d\TH:i:s', time() - 120);
-		$datos['factura']['folio'] = '000001';
+		$datos['factura']['folio'] = $order['order']->order;
 		$datos['factura']['forma_pago'] = $comprobante['formaPago'];
 		$datos['factura']['LugarExpedicion'] = $order['order']->zip;
 		$datos['factura']['metodo_pago'] = $comprobante['metodoPago'];

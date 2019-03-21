@@ -698,10 +698,6 @@ class Home extends CI_Controller {
 		
 		$this->load->library('facturacion/Facturacion');
 		
-		/*$this->facturacion->facturar();
-		
-		die();*/
-
         $idOrder = $this->input->post('idOrder');
         $order  = $this->lorder->order_by_id($idOrder);
 
@@ -763,7 +759,7 @@ class Home extends CI_Controller {
                 $texto = "";
                 $texto .= '<div>APRECIABLE SR. '.$user_name.'</div></br>';
                 $texto .= '<div>AGRADECEMOS SU PREFERENCIA</div></br>';
-                $texto .= '<div>ADJUNTAMOS PDF Y XML DE LA FACTURA</div></br>';
+                $texto .= '<div>ADJUNTAMOS PDF Y XML DE LA FACTURA # '.$order['order']->order.' </div></br>';
                 $texto .= '<div>TE ESPERAMOS DE NUEVO EN  www.dipepsa.mx</div>';
 
                 $path_pdf = array();
@@ -1061,8 +1057,6 @@ class Home extends CI_Controller {
             //Set variables for paypal form
             $returnURL = base_url('website/home/success/'.$order_id.'/'.$customer_id); //payment success url
 
-            //echo $returnURL;die();
-
             $cancelURL = base_url("website/home/cancel/"); //payment cancel url
             $notifyURL = base_url('website/home/ipn/'); //ipn url
 
@@ -1136,6 +1130,8 @@ class Home extends CI_Controller {
 	//Paypal success
 	public function success()
     {
+        //http://localhost/website/home/success/TJKZNBJKFJOHTWC/UOS82HBMKQ8ZOC8
+
         $data['title'] = display('order');
         #--------------------------------------
         //get the transaction data
@@ -1160,8 +1156,7 @@ class Home extends CI_Controller {
 		if ($result) {
 			$this->cart->destroy();
 			$this->session->set_userdata('message',display('product_successfully_order'));
-			//redirect('/customer/order/manage_order');
-            redirect('/checkout_invoice/'.$order_id);
+			redirect('/checkout_invoice/'.$order_id);
         }
     }
 

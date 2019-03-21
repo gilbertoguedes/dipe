@@ -24,6 +24,19 @@ class Homes extends CI_Model {
 		return false;
 	}
 
+	public function select_last_order()
+    {
+        $this->db->select('*');
+        $this->db->from('order');
+        $this->db->order_by('date','desc');
+        $this->db->limit(1);
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            return $query->result_array();
+        }
+        return false;
+    }
+
     //Department List
     public function popular_category_list()
     {
@@ -364,7 +377,7 @@ class Homes extends CI_Model {
 			);
 			$this->db->insert('order',$data);
 		}else{
-			//Data inserting into order table for payment gateway
+            //Data inserting into order table for payment gateway
 			$data=array(
 				'order_id'			=>	$order_id,
 				'customer_id'		=>	$customer_id,
@@ -391,8 +404,7 @@ class Homes extends CI_Model {
                 'customer_env_refer' 	=> 	$this->session->userdata('customer_refer'),
                 'metodo_pago' 	=> 	$this->session->userdata('payment_method'),
                 'variante_entrega' 	=> 	$this->session->userdata('customer_variant'),
-
-			);
+            );
 			$this->db->insert('order',$data);
 
         }
@@ -614,9 +626,29 @@ class Homes extends CI_Model {
 		if ($order_no !='') {
 			$order_no = $order_no + 1;	
 		}else{
-			$order_no = 1000;
+            $order_no = 1;
 		}
-		return $order_no;		
+		return $order_no;
+
+        /*$this->db->select_max('order', 'order_no');
+        $query = $this->db->get('order');
+        $result = $query->result_array();
+        $order_no = $result[0]['order_no'];
+
+        $order_no = '201910';
+
+        if ($order_no !='') {
+            $annoDb = substr($order_no,0,4);
+            $annoActual = date('Y');
+            if($annoActual>)
+            die($annoDb);
+        }else{
+            $order_no = date('Y').'1';
+
+        }
+        die($order_no);
+        return $order_no;*/
+
 	}
 
 	//Retrive all language
