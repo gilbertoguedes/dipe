@@ -1159,7 +1159,7 @@ class Home extends CI_Controller {
         $html = $this->generate_html($order);
 
         $user_email = $this->session->userdata('customer_email');
-        $this->Settings->send_mail_file($user_email,'Confirmación de compra', $html);
+        $this->Settings->send_mail($user_email,'Confirmación de compra', $html);
 
 		if ($result) {
 			$this->cart->destroy();
