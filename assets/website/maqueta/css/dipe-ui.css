@@ -1183,7 +1183,7 @@ div.depi-tapcalificar-card .card-header-danger {
 
 /*Css para el paginado Javier----------------------------------*/
 
-nav .pagination li{
+nav .pagination a{
     margin: 5px 5px;
     border:1px solid rgba(0, 0, 0, 0.125);
     padding: 3px 15px;
@@ -1194,7 +1194,7 @@ nav .pagination li a{
     color: #003366;
 }
 
-nav .pagination li:hover{
+nav .pagination a:hover{
     background-color: #003366;
 }
 

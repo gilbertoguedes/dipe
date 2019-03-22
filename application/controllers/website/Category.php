@@ -101,7 +101,7 @@ class Category extends CI_Controller {
         $config['full_tag_close'] = "</ul>";
         $config['num_tag_open'] = "<li class='page-item'>";
         $config['num_tag_close'] = '</li>';
-        $config['cur_tag_open'] = "<li class='page-item active'><a href='#'>";
+        $config['cur_tag_open'] = "<li class='page-item'><a href='#' class='active'>";
         $config['cur_tag_close'] = "<span class='sr-only'></span></a></li>";
         $config['next_tag_open'] = "<li class='page-item'>";
         $config['next_tag_close'] = "</li>";
@@ -156,7 +156,7 @@ class Category extends CI_Controller {
         $config['full_tag_close'] = "</ul>";
         $config['num_tag_open'] = "<li class='page-item'>";
         $config['num_tag_close'] = '</li>';
-        $config['cur_tag_open'] = "<li class='page-item active'><a href='#'>";
+        $config['cur_tag_open'] = "<li class='page-item'><a href='#' class='active'>";
         $config['cur_tag_close'] = "<span class='sr-only'></span></a></li>";
         $config['next_tag_open'] = "<li class='page-item'>";
         $config['next_tag_close'] = "</li>";
@@ -211,7 +211,7 @@ class Category extends CI_Controller {
         $config['full_tag_close'] = "</ul>";
         $config['num_tag_open'] = "<li class='page-item'>";
         $config['num_tag_close'] = '</li>';
-        $config['cur_tag_open'] = "<li class='page-item active'><a href='#'>";
+        $config['cur_tag_open'] = "<li class='page-item'><a href='#' class='active'>";
         $config['cur_tag_close'] = "<span class='sr-only'></span></a></li>";
         $config['next_tag_open'] = "<li class='page-item'>";
         $config['next_tag_close'] = "</li>";
@@ -310,7 +310,7 @@ class Category extends CI_Controller {
         $config['full_tag_close'] = "</ul>";
         $config['num_tag_open'] = "<li class='page-item'>";
         $config['num_tag_close'] = '</li>';
-        $config['cur_tag_open'] = "<li class='page-item active'><a href='#'>";
+        $config['cur_tag_open'] = "<li class='page-item'><a href='#' class='active'>";
         $config['cur_tag_close'] = "<span class='sr-only'></span></a></li>";
         $config['next_tag_open'] = "<li class='page-item'>";
         $config['next_tag_close'] = "</li>";
@@ -365,7 +365,7 @@ class Category extends CI_Controller {
         $config['full_tag_close'] = "</ul>";
         $config['num_tag_open'] = "<li class='page-item'>";
         $config['num_tag_close'] = '</li>';
-        $config['cur_tag_open'] = "<li class='page-item active'><a href='#'>";
+        $config['cur_tag_open'] = "<li class='page-item'><a href='#' class='active'>";
         $config['cur_tag_close'] = "<span class='sr-only'></span></a></li>";
         $config['next_tag_open'] = "<li class='page-item'>";
         $config['next_tag_close'] = "</li>";
