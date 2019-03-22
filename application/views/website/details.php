@@ -289,7 +289,7 @@ if (!empty($currency_new_id)) {
                             <li class="nav-item">
                                 <a class="nav-link" href="#messages" data-toggle="tab">
                                     <!--<i class="material-icons">chat</i>-->
-                                    Reseñar
+                                    Datos
                                 </a>
                             </li>
                         </ul>
