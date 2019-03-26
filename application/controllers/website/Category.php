@@ -69,9 +69,7 @@ class Category extends CI_Controller {
 
     public function category_product_search_url($store_id,$product_name,$cat_id)
     {
-        /*$cat_id         = $this->input->post('category_id');
-        $product_name   = $this->input->post('product_name');
-        $store_id   = $this->input->post('store_id');*/
+        /*die($product_name);*/
         $config["base_url"] 	= base_url('category_product_search_url/'.$store_id.'/'.$product_name.'/'.$cat_id);
         if($product_name=="all_products")
         {
@@ -79,9 +77,9 @@ class Category extends CI_Controller {
         }
         else
         {
+            $product_name = str_replace("%C3%B1","ñ",$product_name);
+            $product_name = str_replace("%C3%91","Ñ",$product_name);
             $product_name = str_replace("%20"," ",$product_name);
-            /*echo $product_name;
-            die();*/
         }
 
         $stores = $this->Stores->store_list();

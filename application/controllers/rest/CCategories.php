@@ -8,7 +8,21 @@ class CCategories extends REST_Controller
 
         $deparment = $this->Categories->department_list();
 
-        $this->response($deparment,201);
+        $result = array();
+
+        if($deparment)
+        {
+            $result['result'] = '1';
+            $result['data'] = $deparment;
+            $result['pagination'] = false;
+         }
+         else
+         {
+             $result['result'] = '2';
+             $result['message'] = 'No existen categorias';
+         }
+
+         $this->response($result,201);
     }
 
     public function categories_all_get()
@@ -45,7 +59,44 @@ class CCategories extends REST_Controller
 
         }
 
-        $this->response($nivel0,201);
+        $result = array();
+
+        if($deparment)
+        {
+            $result['result'] = '1';
+            $result['data'] = $nivel0;
+            $result['pagination'] = false;
+        }
+        else
+        {
+            $result['result'] = '2';
+            $result['message'] = 'No existen categorias';
+        }
+
+        $this->response($result,201);
+    }
+
+    public function get_popular_categories_get()
+    {
+        $this->load->model('website/Categories');
+
+        $categories = $this->Categories->popular_category();
+
+        $result = array();
+
+        if($categories)
+        {
+            $result['result'] = '1';
+            $result['data'] = $categories;
+            $result['pagination'] = false;
+        }
+        else
+        {
+            $result['result'] = '2';
+            $result['message'] = 'No existen categorias';
+        }
+
+        $this->response($result,201);
     }
 
 

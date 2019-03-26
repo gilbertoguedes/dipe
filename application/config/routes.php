@@ -155,6 +155,22 @@ $route['api_categories_deparment'] = 'rest/CCategories/categories_deparment';
 
 $route['api_categories_all'] = 'rest/CCategories/categories_all';
 
-$route['api_get_products_by_category/(:any)'] = 'rest/CProductos/get_products_by_category/$1';
-$route['api_get_products_by_category/(:any)/(:num)'] = 'rest/CProductos/get_products_by_category/$1/$2';
+$route['api_get_products_by_category/(:any)/(:any)'] = 'rest/CProductos/get_products_by_category/$1/$2';
+$route['api_get_products_by_category/(:any)/(:any)/(:num)'] = 'rest/CProductos/get_products_by_category/$1/$2/$3';
+
+$route['api_stores_all'] = 'rest/CStores/stores_all';
+
+$route['api_store_default'] = 'rest/CStores/store_default';
+
+$route['api_get_products_new/(:any)'] = 'rest/CProductos/get_products_new/$1';
+$route['api_get_products_new/(:any)/(:num)'] = 'rest/CProductos/get_products_new/$1/$2';
+
+$route['api_get_products_recomend/(:any)'] = 'rest/CProductos/get_products_recomend/$1';
+$route['api_get_products_recomend/(:any)/(:num)'] = 'rest/CProductos/get_products_recomend/$1/$2';
+
+$route['api_get_products_ofert/(:any)'] = 'rest/CProductos/get_products_ofert/$1';
+$route['api_get_products_ofert/(:any)/(:num)'] = 'rest/CProductos/get_products_ofert/$1/$2';
+
+$route['api_get_popular_categories'] = 'rest/CCategories/get_popular_categories';
+
 
