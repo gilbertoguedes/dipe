@@ -173,4 +173,10 @@ $route['api_get_products_ofert/(:any)/(:num)'] = 'rest/CProductos/get_products_o
 
 $route['api_get_popular_categories'] = 'rest/CCategories/get_popular_categories';
 
+$route['api_get_product_by_id/(:any)/(:any)'] = 'rest/CProductos/get_product_by_id/$1/$2';
+
+$route['api_prueba'] = 'rest/CProductos/prueba';
+
+
+
 
