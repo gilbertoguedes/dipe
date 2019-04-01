@@ -5,7 +5,7 @@ class Home extends CI_Controller {
       	parent::__construct();
 		$this->load->library('website/Lhome');
         $this->load->library('Lorder');
-		$this->load->library('paypal_lib'); 
+		$this->load->library('paypal_lib');
 		$this->load->model('website/Homes');
         $this->load->model('website/Homes');
 		$this->load->model('Subscribers');
@@ -1015,14 +1015,11 @@ class Home extends CI_Controller {
         }
 
         //Payment method for payeer
-        if ($payment_method == 4) {
+        /*if ($payment_method == 4) {
 
 	        $date = new DateTime();
 			$comment = $customer_id.'/buy/'.$order_id.'/'.$date->format('Y-m-d H:i:s');
 
-			/**************************
-			* Payeer
-			**************************/
 			$gateway = $this->db->select('*')->from('payment_gateway')->where('id',2)->where('status',1)->get()->row();
 
 			$data['m_shop'] 	= @$gateway->shop_id;
@@ -1047,6 +1044,107 @@ class Home extends CI_Controller {
 
 		    $content = $this->parser->parse('website/payment',$data,true);
         	$this->template->full_website_html_view($content);
+        }*/
+        if ($payment_method == 4) {
+
+            $cadena = '';
+            $cadena = $cadena.'<P>';
+                $cadena = $cadena.'<business>';
+                    $cadena = $cadena.'<id_company>SNBX</id_company>';
+                    $cadena = $cadena.'<id_branch>01SNBXBRNCH</id_branch>';
+                    $cadena = $cadena.'<user>SNBXUSR01</user>';
+                    $cadena = $cadena.'<pwd>SECRETO</pwd>';
+                $cadena = $cadena.'</business>';
+                $cadena = $cadena.'<url>';
+                    $cadena = $cadena.'<reference>FACTURA999</reference>';
+                    $cadena = $cadena.'<amount>2500.00</amount>';
+                    $cadena = $cadena.'<moneda>MXN</moneda>';
+                    $cadena = $cadena.'<canal>W</canal>';
+                    $cadena = $cadena.'<omitir_notif_default>1</omitir_notif_default>';
+                    $cadena = $cadena.'<promociones>C</promociones>';
+                    $cadena = $cadena.'<st_correo>1</st_correo>';
+                    $cadena = $cadena.'<fh_vigencia>01/05/2019</fh_vigencia>';
+                    $cadena = $cadena.'<mail_cliente>nospam@gmail.com</mail_cliente>';
+                    $cadena = $cadena.'<datos_adicionales>';
+                        $cadena = $cadena.'<data id="1" display="true">';
+                            $cadena = $cadena.'<label>Talla</label>';
+                            $cadena = $cadena.'<value>Grande</value>';
+                        $cadena = $cadena.'</data>';
+                        $cadena = $cadena.'<data id="2" display="true">';
+                            $cadena = $cadena.'<label>Color</label>';
+                            $cadena = $cadena.'<value>Azul</value>';
+                        $cadena = $cadena.'</data>';
+                    $cadena = $cadena.'</datos_adicionales>';
+                $cadena = $cadena.'</url>';
+            $cadena = $cadena.'</P>';
+
+            $key = '5dcc67393750523cd165f17e1efadd21';
+
+            $this->load->library('santander/AESCrypto');
+
+            $cadenaEncriptada = $this->aescrypto->encriptar($cadena, $key);
+
+            $encodedString = urlencode('<pgs><data0>SNDBX123</data0><data>'.$cadenaEncriptada.'</data></pgs>');
+
+            $url = 'https://wppsandbox.mit.com.mx/gen';
+
+            $header = array(
+                'cache-control' => 'no-cache',
+                'content-type' => 'application/x-www-form-urlencoded'
+            );
+
+            $params = array(
+                'xml' => $encodedString
+            );
+
+            $ch = curl_init();
+
+
+            curl_setopt($ch,CURLOPT_URL,$url);
+            curl_setopt($ch,CURLOPT_HEADER,$header);
+            curl_setopt($ch,CURLOPT_POST,count($params));
+            curl_setopt($ch,CURLOPT_POSTFIELDS,$params);
+
+            try{
+                $ouput = curl_exec($ch);
+            }
+            catch (HttpException $ex)
+            {
+                echo $ex;
+            }
+
+
+            curl_close($ch);
+            /*$request = new HttpRequest();
+            echo 'oka';
+            die();
+            $request->setUrl('https://wppsandbox.mit.com.mx/gen');
+            $request->setMethod(HTTP_METH_POST);
+
+            $request->setHeaders(array(
+                'cache-control' => 'no-cache',
+                'content-type' => 'application/x-www-form-urlencoded'
+            ));
+
+            $request->setContentType('application/x-www-form-urlencoded');
+            $request->setPostFields(array(
+                'xml' => $encodedString
+            ));
+
+
+
+            try {
+                $response = $request->send();
+
+                echo $response->getBody();
+            } catch (HttpException $ex) {
+                echo $ex;
+            }*/
+            var_dump($ouput);
+
+            die();
+
+
         }
 
         //Payment method for paypal

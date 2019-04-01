@@ -279,6 +279,12 @@ if ($this->cart->contents()) { ?>
                                     <img src="<?php echo base_url('my-assets/image/payeer.png')?>">
                                  </label>
                             </div>-->
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="payment_method" value="4" <?php if ($this->session->userdata('payment_method') == 4 ) { echo "checked = 'checked'"; } ?>>
+                                            <img src="<?php echo base_url('my-assets/image/payeer.png')?>">
+                                        </label>
+                                    </div>
                                     <?php } ?>
 
                                     <?php
