@@ -1098,12 +1098,12 @@ class Home extends CI_Controller {
             );
 
             $clienGuzzle = new \GuzzleHttp\Client([
-                'base_uri' => 'https://wppsandbox.mit.com.mx/gen',
+                'base_uri' => 'https://wppsandbox.mit.com.mx/',
                 'timeout' => 2.0
             ]);
 
             try{
-                $response = $clienGuzzle->request('POST','https://wppsandbox.mit.com.mx/gen',[
+                $response = $clienGuzzle->request('POST','gen',[
                     'form_params' => [
                         'xml' => $encodedString
                     ]
