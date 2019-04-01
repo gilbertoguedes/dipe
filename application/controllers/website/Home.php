@@ -1102,11 +1102,20 @@ class Home extends CI_Controller {
                 'timeout' => 2.0
             ]);
 
-            $response = $clienGuzzle->request('POST','https://wppsandbox.mit.com.mx/gen',[
-               'form_params' => [
-                   'xml' => $encodedString
-               ]
-            ]);
+            try{
+                $response = $clienGuzzle->request('POST','https://wppsandbox.mit.com.mx/gen',[
+                    'form_params' => [
+                        'xml' => $encodedString
+                    ]
+                ]);
+            }
+            catch (\GuzzleHttp\Exception\ClientException $e)
+            {
+                echo GuzzleHttp\Psr7\str($e->getRequest());
+                echo GuzzleHttp\Psr7\str($e->getResponse());
+            }
+
+
 
             /*$ch = curl_init();
 
