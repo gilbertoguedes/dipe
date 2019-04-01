@@ -1103,7 +1103,8 @@ class Home extends CI_Controller {
             curl_setopt($ch,CURLOPT_URL,$url);
             curl_setopt($ch,CURLOPT_HTTPHEADER,$header);
             curl_setopt($ch,CURLOPT_HEADER,1);
-            curl_setopt($ch,CURLOPT_POST,1);
+            /*curl_setopt($ch,CURLOPT_POST,1);*/
+            curl_setopt($ch,CURLOPT_POST,true);
             curl_setopt($ch,CURLOPT_POSTFIELDS,$params);
 
             try{
