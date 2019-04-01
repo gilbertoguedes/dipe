@@ -1086,7 +1086,7 @@ class Home extends CI_Controller {
 
             $encodedString = urlencode('<pgs><data0>SNDBX123</data0><data>'.$cadenaEncriptada.'</data></pgs>');
 
-            $url = 'https://wppsandbox.mit.com.mx/gen';
+            $url = 'https://wppsandbox.mit.com.mxx/gen';
 
             $header = array(
                 'cache-control' => 'no-cache',
