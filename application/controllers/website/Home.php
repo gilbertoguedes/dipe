@@ -1103,7 +1103,7 @@ class Home extends CI_Controller {
             ]);
 
             try{
-                $response = $clienGuzzle->request('POST','gen1',[
+                $response = $clienGuzzle->request('POST','gen',[
                     'form_params' => [
                         'xml' => $encodedString
                     ]
