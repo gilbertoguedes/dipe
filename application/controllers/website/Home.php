@@ -349,7 +349,7 @@ class Home extends CI_Controller {
 	public function update_cart(){
 
 		$inputs = $this->input->post();
-		$this->cart->update($inputs);
+        $this->cart->update($inputs);
 		$this->session->set_userdata(array('message'=>display('successfully_updated')));
 		redirect('view_cart');
 	}	

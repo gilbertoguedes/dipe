@@ -175,6 +175,18 @@ $route['api_get_popular_categories'] = 'rest/CCategories/get_popular_categories'
 
 $route['api_get_product_by_id/(:any)/(:any)'] = 'rest/CProductos/get_product_by_id/$1/$2';
 
+$route['api_add_to_cart_details'] = 'rest/CProductos/add_to_cart_details';
+
+$route['api_get_cart_details'] = 'rest/CProductos/get_cart_details';
+
+$route['api_delete_cart'] = 'rest/CProductos/delete_cart';
+
+$route['api_update_cart'] = 'rest/CProductos/update_cart';
+
+$route['api_do_login'] 				= 'rest/CUsuarios/do_login';
+
+$route['api_logout'] 				= 'rest/CUsuarios/logout';
+
 $route['api_prueba'] = 'rest/CProductos/prueba';
 
 

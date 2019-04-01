@@ -9,16 +9,16 @@ class CProductos extends REST_Controller
         $this->load->model('website/Products_model');
         $this->load->model('Stores');
 
-        /*$this->load->library('website/Lhome');
+        $this->load->library('website/Lhome');
         $this->load->library('Lorder');
         $this->load->library('paypal_lib');
         $this->load->model('website/Homes');
         $this->load->model('website/Homes');
         $this->load->model('Subscribers');
-        $this->qrgenerator();
+        //$this->qrgenerator();
         $this->load->model('Customer_dashboards');
         $this->load->model('website/Products_model');
-        $this->load->model('website/Settings');*/
+        $this->load->model('website/Settings');
     }
 
     public function category_product_search_url_get($store_id,$product_name,$cat_id)
@@ -169,17 +169,29 @@ class CProductos extends REST_Controller
 
     public function prueba_get()
     {
-        if($this->session->userdata('num')>0)
+        $result = array();
+
+        if ($this->user_auth->is_logged())
         {
-            $num = $this->session->userdata('num');
-            $num = $num + 1;
-            $this->session->set_userdata('num',$num);
+            if($this->session->userdata('num')>0)
+            {
+                $num = $this->session->userdata('num');
+                $num = $num + 1;
+                $this->session->set_userdata('num',$num);
+            }
+            else
+            {
+                $this->session->set_userdata('num',1);
+            }
+            $this->response($num,201);
         }
         else
         {
-            $this->session->set_userdata('num',1);
+            $result['result'] = '2';
+            $result['message'] = 'Error, usuario no autorizdo';
         }
-        $this->response($num,201);
+
+        $this->response($result,201);
     }
 
     public function get_product_by_id_get($product_id,$store_id)
@@ -213,9 +225,10 @@ class CProductos extends REST_Controller
     }
 
     //Add to cart for details
-    /*public function add_to_cart_details(){
+    public function add_to_cart_details_post(){
 
         $product_id = $this->input->post('product_id');
+        //$store_id = $this->input->post('store_id');
         $qnty 		= $this->input->post('qnty');
         $variant    = $this->input->post('variant');
 
@@ -230,7 +243,9 @@ class CProductos extends REST_Controller
         $igst = 0;
         $igst_id = 0;
 
-        if ($product_id) {
+        $result = array();
+
+        if ($product_id && $qnty>0) {
             $product_details = $this->Homes->product_details($product_id);
 
             //CGST product tax
@@ -331,11 +346,88 @@ class CProductos extends REST_Controller
                         'igst_id' 	=> $igst_id,
                     )
                 );
-                $result = $this->cart->insert($data);
+
+                $this->cart->insert($data);
             }
-            echo "1";
+            //$this->response($this->cart->total_items(),201);
+            $result['result'] = '1';
+            $result['data'] = $this->cart->contents();
+            $result['totals_rows'] = $this->cart->total_items();
+            $result['pagination'] = false;
         }
-    }*/
+        else
+        {
+            $result['result'] = '2';
+            $result['message'] = 'Error al agregar al carrito';
+        }
+
+        $this->response($result,201);
+    }
+
+    public function get_cart_details_get(){
+        $result = array();
+        $result['result'] = '1';
+        $result['data'] = $this->cart->contents();
+        $result['totals_rows'] = $this->cart->total_items();
+        $result['pagination'] = false;
+        $this->response($result,201);
+    }
+
+    //Delete item on your cart
+    public function delete_cart_post(){
+        $rowid = $this->input->post('row_id');
+        $r = $this->cart->remove($rowid);
+        $result = array();
+        if ($r) {
+
+            $result['result'] = '1';
+            $result['data'] = $this->cart->contents();
+            $result['totals_rows'] = $this->cart->total_items();
+            $result['pagination'] = false;
+        }
+        else
+        {
+            $result['result'] = '2';
+            $result['message'] = 'Error al agregar al carrito';
+        }
+
+        $this->response($result,201);
+    }
+
+    public function update_cart_post(){
+        //rray(1) { [1]=> array(2) { ["rowid"]=> string(32) "4550f6dd86fe0cccf23e92bcc8b57e31" ["qty"]=> string(1) "3" } }
+        $inputs = $this->input->post();
+        $this->cart->update($inputs);
+        $r = $this->session->set_userdata(array('message'=>display('successfully_updated')));
+
+        $result = array();
+
+        $result['result'] = '1';
+        $result['data'] = $this->cart->contents();
+        $result['totals_rows'] = $this->cart->total_items();
+        $result['pagination'] = false;
+
+        $this->response($result,201);
+    }
+
+    //This function is used to Generate Key
+    public function generator($lenth)
+    {
+        $number=array("A","B","C","D","E","F","G","H","I","J","K","L","N","M","O","P","Q","R","S","U","V","T","W","X","Y","Z","1","2","3","4","5","6","7","8","9","0");
+
+        for($i=0; $i<$lenth; $i++)
+        {
+            $rand_value=rand(0,34);
+            $rand_number=$number["$rand_value"];
+
+            if(empty($con)){
+                $con = $rand_number;
+            }else{
+                $con = "$con"."$rand_number";
+            }
+        }
+        return $con;
+    }
 
 }
 
