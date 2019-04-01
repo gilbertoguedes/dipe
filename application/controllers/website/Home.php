@@ -1097,7 +1097,7 @@ class Home extends CI_Controller {
                 'xml' => $encodedString
             );
 
-            $clienGuzzle = new \GuzzleHttp\Client([
+            /*$clienGuzzle = new \GuzzleHttp\Client([
                 'base_uri' => 'https://wppsandbox.mit.com.mx/',
                 'timeout' => 2.0
             ]);
@@ -1113,18 +1113,18 @@ class Home extends CI_Controller {
             {
                 echo GuzzleHttp\Psr7\str($e->getRequest());
                 echo GuzzleHttp\Psr7\str($e->getResponse());
-            }
+            }*/
 
 
 
-            /*$ch = curl_init();
+            $ch = curl_init();
 
 
             curl_setopt($ch,CURLOPT_URL,$url);
-            curl_setopt($ch,CURLOPT_HTTPHEADER,$header);
-            curl_setopt($ch,CURLOPT_HEADER,1);
-            curl_setopt($ch,CURLOPT_POST,true);
-            curl_setopt($ch,CURLOPT_POSTFIELDS,$params);
+            curl_setopt($ch,CURLOPT_HTTPHEADER,array('content-type: application/x-www-form-urlencoded'));
+            curl_setopt($ch,CURLOPT_POST,1);
+            curl_setopt($ch,CURLOPT_POSTFIELDS,"xml=czxczxczxcz");
+            curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
 
             try{
                 $ouput = curl_exec($ch);
@@ -1135,7 +1135,7 @@ class Home extends CI_Controller {
             }
 
 
-            curl_close($ch);*/
+            curl_close($ch);
             /*$request = new HttpRequest();
             echo 'oka';
             die();
@@ -1161,7 +1161,7 @@ class Home extends CI_Controller {
             } catch (HttpException $ex) {
                 echo $ex;
             }*/
-            var_dump($response);
+            var_dump($ouput);
 
             die();
 
