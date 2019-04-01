@@ -1103,7 +1103,7 @@ class Home extends CI_Controller {
             ]);
 
             try{
-                $response = $clienGuzzle->request('POST','https://wppsandbox.mit.com.mx/gen/post',[
+                $response = $clienGuzzle->request('POST','https://wppsandbox.mit.com.mx/gen',[
                     'form_params' => [
                         'xml' => $encodedString
                     ]
