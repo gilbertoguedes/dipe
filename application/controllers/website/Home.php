@@ -1088,35 +1088,7 @@ class Home extends CI_Controller {
 
             $url = 'https://wppsandbox.mit.com.mx/gen';
 
-            $header = array(
-                'cache-control' => 'no-cache',
-                'content-type' => 'application/x-www-form-urlencoded'
-            );
-
-            /*$params = array(
-                'xml' => $encodedString
-            );*/
             $params['xml'] = $encodedString;
-
-            /*$clienGuzzle = new \GuzzleHttp\Client([
-                'base_uri' => 'https://wppsandbox.mit.com.mx/',
-                'timeout' => 2.0
-            ]);
-
-            try{
-                $response = $clienGuzzle->request('POST','gen',[
-                    'form_params' => [
-                        'xml' => $encodedString
-                    ]
-                ]);
-            }
-            catch (\GuzzleHttp\Exception\ClientException $e)
-            {
-                echo GuzzleHttp\Psr7\str($e->getRequest());
-                echo GuzzleHttp\Psr7\str($e->getResponse());
-            }*/
-
-
 
             $ch = curl_init();
 
@@ -1135,34 +1107,11 @@ class Home extends CI_Controller {
                 echo $ex;
             }
 
-
             curl_close($ch);
-            /*$request = new HttpRequest();
-            echo 'oka';
-            die();
-            $request->setUrl('https://wppsandbox.mit.com.mx/gen');
-            $request->setMethod(HTTP_METH_POST);
 
-            $request->setHeaders(array(
-                'cache-control' => 'no-cache',
-                'content-type' => 'application/x-www-form-urlencoded'
-            ));
+            $cadenaDesencriptada = $this->aescrypto->desencriptar($ouput, $key);
 
-            $request->setContentType('application/x-www-form-urlencoded');
-            $request->setPostFields(array(
-                'xml' => $encodedString
-            ));
-
-
-
-            try {
-                $response = $request->send();
-
-                echo $response->getBody();
-            } catch (HttpException $ex) {
-                echo $ex;
-            }*/
-            var_dump($ouput);
+            echo $cadenaDesencriptada;
 
             die();
 
