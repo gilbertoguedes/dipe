@@ -160,6 +160,8 @@ $route['api_get_products_by_category/(:any)/(:any)/(:num)'] = 'rest/CProductos/g
 
 $route['api_stores_all'] = 'rest/CStores/stores_all';
 
+$route['api_success_santander'] = 'rest/CStores/success_santander';
+
 $route['api_store_default'] = 'rest/CStores/store_default';
 
 $route['api_get_products_new/(:any)'] = 'rest/CProductos/get_products_new/$1';

@@ -48,6 +48,11 @@ class CStores extends REST_Controller
 
         $this->response($result,201);
     }
+
+    public function success_santander_post()
+    {
+        $this->response('oka',201);
+    }
 }
 
 ?>
