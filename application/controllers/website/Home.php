@@ -1117,9 +1117,7 @@ class Home extends CI_Controller {
 
             $ligaUrl = $liga->getElementsByTagName('nb_url')->item(0)->nodeValue;
 
-            echo $ligaUrl;
-
-            die();
+            redirect($ligaUrl);
 
 
         }
