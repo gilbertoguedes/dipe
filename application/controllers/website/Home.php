@@ -1057,7 +1057,7 @@ class Home extends CI_Controller {
                 $cadena = $cadena.'</business>';
                 $cadena = $cadena.'<url>';
                     $date = new DateTime();
-                    $cadena = $cadena.'<reference>Orden-'.$date->format('Y-m-d H:i:s').'</reference>';
+                    $cadena = $cadena.'<reference>Orden-'.$date->format('d-m-Y H:i:s').'</reference>';
                     $cadena = $cadena.'<amount>'.$this->session->userdata('cart_total').'</amount>';
                     $cadena = $cadena.'<moneda>MXN</moneda>';
                     $cadena = $cadena.'<canal>W</canal>';
