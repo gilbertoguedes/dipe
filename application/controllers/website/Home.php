@@ -1109,9 +1109,15 @@ class Home extends CI_Controller {
 
             curl_close($ch);
 
-            $cadenaDesencriptada = $this->aescrypto->desencriptar($ouput, $key);
+            $cadenaDesencriptadaXml = $this->aescrypto->desencriptar($ouput, $key);
 
-            echo $cadenaDesencriptada;
+            $liga = new DOMDocument;
+
+            $liga->loadXML($cadenaDesencriptadaXml);
+
+            $ligaUrl = $liga->getElementsByTagName('nb_url')->item(0)->nodeValue;
+
+            echo $ligaUrl;
 
             die();
 
