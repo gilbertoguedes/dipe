@@ -1056,16 +1056,17 @@ class Home extends CI_Controller {
                     $cadena = $cadena.'<pwd>SECRETO</pwd>';
                 $cadena = $cadena.'</business>';
                 $cadena = $cadena.'<url>';
-                    $cadena = $cadena.'<reference>FACTURA999</reference>';
-                    $cadena = $cadena.'<amount>2500.00</amount>';
+                    $date = new DateTime();
+                    $cadena = $cadena.'<reference>Orden-'.$date->format('Y-m-d H:i:s').'</reference>';
+                    $cadena = $cadena.'<amount>'.$this->session->userdata('cart_total').'</amount>';
                     $cadena = $cadena.'<moneda>MXN</moneda>';
                     $cadena = $cadena.'<canal>W</canal>';
                     $cadena = $cadena.'<omitir_notif_default>1</omitir_notif_default>';
                     $cadena = $cadena.'<promociones>C</promociones>';
                     $cadena = $cadena.'<st_correo>1</st_correo>';
-                    $cadena = $cadena.'<fh_vigencia>01/05/2019</fh_vigencia>';
-                    $cadena = $cadena.'<mail_cliente>nospam@gmail.com</mail_cliente>';
-                    $cadena = $cadena.'<datos_adicionales>';
+                    $cadena = $cadena.'<fh_vigencia>'.$date->format('d/m/Y').'</fh_vigencia>';
+                    $cadena = $cadena.'<mail_cliente>'.$this->session->userdata('customer_email').'</mail_cliente>';
+                    /*$cadena = $cadena.'<datos_adicionales>';
                         $cadena = $cadena.'<data id="1" display="true">';
                             $cadena = $cadena.'<label>Talla</label>';
                             $cadena = $cadena.'<value>Grande</value>';
@@ -1074,7 +1075,7 @@ class Home extends CI_Controller {
                             $cadena = $cadena.'<label>Color</label>';
                             $cadena = $cadena.'<value>Azul</value>';
                         $cadena = $cadena.'</data>';
-                    $cadena = $cadena.'</datos_adicionales>';
+                    $cadena = $cadena.'</datos_adicionales>';*/
                 $cadena = $cadena.'</url>';
             $cadena = $cadena.'</P>';
 
