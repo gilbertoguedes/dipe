@@ -1246,7 +1246,15 @@ class Home extends CI_Controller {
         //http://localhost/website/home/success/TJKZNBJKFJOHTWC/UOS82HBMKQ8ZOC8
         $request  = $this->input->post();
         $strResponse = $request['strResponse'];
-        echo $strResponse;
+        if($strResponse)
+        {
+            echo $strResponse;
+        }
+        else
+        {
+            echo "NO existe el parámetro strResponse";
+        }
+
         die();
     }
 
