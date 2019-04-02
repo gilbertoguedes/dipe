@@ -1124,7 +1124,7 @@ class Home extends CI_Controller {
             curl_setopt($ch,CURLOPT_URL,$url);
             curl_setopt($ch,CURLOPT_HTTPHEADER,array('content-type: application/x-www-form-urlencoded'));
             curl_setopt($ch,CURLOPT_POST,1);
-            curl_setopt($ch,CURLOPT_POSTFIELDS,$params);
+            curl_setopt($ch,CURLOPT_POSTFIELDS,'xml='.$encodedString);
             curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
 
             try{
