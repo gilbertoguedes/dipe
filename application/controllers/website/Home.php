@@ -1164,35 +1164,33 @@ class Home extends CI_Controller {
 	public function payeerSuccess() 
 	{
 		//Redirect value from get method
-		$request  = $this->input->get();
-		$order_id = $request['m_orderid'];
-		// $order_id = explode('_', $orderID);
+        /*$payment_method = $this->session->userdata('payment_method');
 
-		//Order entry
-		$customer_id 	 = $this->session->userdata('customer_id');
-	    $return_order_id = $this->Homes->order_entry($customer_id,$order_id);
-	   	$result   		 = $this->order_inserted_data($return_order_id);
+        if($payment_method == 10)
+        {
+            $request  = $this->input->get();
+            $order_id = $request['m_orderid'];
+            // $order_id = explode('_', $orderID);
 
-	   	if ($result) {
-	   		$this->cart->destroy();
-			$this->session->set_userdata('message', display('product_successfully_order'));
-			redirect("website/customer/home/");
-	   	}
+            //Order entry
+            $customer_id 	 = $this->session->userdata('customer_id');
+            $return_order_id = $this->Homes->order_entry($customer_id,$order_id);
+            $result   		 = $this->order_inserted_data($return_order_id);
 
- //    [m_operation_id] => 474205085
- //    [m_operation_ps] => 2609
- //    [m_operation_date] => 25.01.2018 12:43:58
- //    [m_operation_pay_date] => 25.01.2018 12:44:11
- //    [m_shop] => 474181962
- //    [m_orderid] => invoice1516873427
- //    [m_amount] => 0.13
- //    [m_curr] => USD
- //    [m_desc] => VGVzdA==
- //    [m_status] => success
- //    [m_sign] => CF5AE9EEDE210CE7657275C101A86F2A1D9DB92E747A2984B79B998D525579CF
- //    [lang] => en
+            if ($result) {
+                $this->cart->destroy();
+                $this->session->set_userdata('message', display('product_successfully_order'));
+                redirect("website/customer/home/");
+            }
+        }
+        else{
+            $request  = $this->input->post();
+            $strResponse = $request['strResponse'];
+            echo $strResponse;
+            die();
+        }*/
 
-	}
+    }
 
 	//Payeer fail
 	public function payeerFail() 
@@ -1205,41 +1203,51 @@ class Home extends CI_Controller {
 	public function success()
     {
         //http://localhost/website/home/success/TJKZNBJKFJOHTWC/UOS82HBMKQ8ZOC8
+        $payment_method = $this->session->userdata('payment_method');
 
-        $data['title'] = display('order');
-        #--------------------------------------
-        //get the transaction data
-        // $paypalInfo = $this->input->get();
+        if($payment_method == 5) {
+            $data['title'] = display('order');
+            #--------------------------------------
+            //get the transaction data
+            // $paypalInfo = $this->input->get();
 
-        //Get order id and customer id
-        $order_id = $this->uri->segment('4');
-        $customer_id = $this->uri->segment('5');
-        $store_id = $this->session->userdata('store_id');
+            //Get order id and customer id
+            $order_id = $this->uri->segment('4');
+            $customer_id = $this->uri->segment('5');
+            $store_id = $this->session->userdata('store_id');
 
-        //session token
-        $token = $this->session->userdata('_tran_token');
+            //session token
+            $token = $this->session->userdata('_tran_token');
 
-        /*if ($token != $order_id)
-        {
-            redirect('website/home/cancel');
-        }*/
+            /*if ($token != $order_id)
+            {
+                redirect('website/home/cancel');
+            }*/
 
-        //pass the transaction data to view
-    	$return_order_id = $this->Homes->order_entry($customer_id,$order_id,$store_id);
-        $result   = $this->order_inserted_data($return_order_id);
+            //pass the transaction data to view
+            $return_order_id = $this->Homes->order_entry($customer_id, $order_id, $store_id);
+            $result = $this->order_inserted_data($return_order_id);
 
-        $order  = $this->lorder->order_by_id($order_id);
+            $order = $this->lorder->order_by_id($order_id);
 
-        $html = $this->generate_html($order);
+            $html = $this->generate_html($order);
 
-        $user_email = $this->session->userdata('customer_email');
-        $this->Settings->send_mail($user_email,'Confirmación de compra', $html);
+            $user_email = $this->session->userdata('customer_email');
+            $this->Settings->send_mail($user_email, 'Confirmación de compra', $html);
 
-		if ($result) {
-			$this->cart->destroy();
-			$this->session->set_userdata('message',display('product_successfully_order'));
-			redirect('/checkout_invoice/'.$order_id);
+            if ($result) {
+                $this->cart->destroy();
+                $this->session->set_userdata('message', display('product_successfully_order'));
+                redirect('/checkout_invoice/' . $order_id);
+            }
         }
+        else{
+            $request  = $this->input->post();
+            $strResponse = $request['strResponse'];
+            echo $strResponse;
+            die();
+        }
+
     }
 
     public function generate_html($order)
