@@ -191,6 +191,6 @@ $route['api_logout'] 				= 'rest/CUsuarios/logout';
 
 $route['api_prueba'] = 'rest/CProductos/prueba';
 
-
+$route['api_comprar'] = 'rest/CComprar/comprar';
 
 

@@ -49,6 +49,37 @@ class User_auth {
 		}
 	}
 
+    public function login_app($email,$password)
+    {
+        $CI =& get_instance();
+        $result = $this->check_valid_user($email,$password);
+        if ($result)
+        {
+            // codeigniter session stored data
+            $user_data = array(
+                'customer_id' 	=> $result[0]['customer_id'],
+                'customer_name' => $result[0]['first_name']." ".$result[0]['last_name'],
+                //customer shipping info
+                'first_name'   => $result[0]['first_name'],
+                'last_name'    => $result[0]['last_name'],
+                'customer_email'  => $result[0]['customer_email'],
+                'customer_mobile' => $result[0]['customer_mobile'],
+                'customer_address_1'  => $result[0]['customer_address_1'],
+                'customer_address_2'  => $result[0]['customer_address_2'],
+                'company'  	=> $result[0]['company'],
+                'city'  	=> $result[0]['city'],
+                'zip'  		=> $result[0]['zip'],
+                'country'  	=> $result[0]['country'],
+                'state'  	=> $result[0]['state'],
+                'password'  => $result[0]['last_name'],
+            );
+
+            return $user_data;
+        }else{
+            return FALSE;
+        }
+    }
+
     public function login_email($email,$code)
     {
         $CI =& get_instance();

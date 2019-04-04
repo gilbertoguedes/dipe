@@ -3,6 +3,7 @@
   "require": {
     "dompdf/dompdf" : "0.6.*",
 		"chriskacerguis/codeigniter-restserver": "^3.0",
-		"guzzlehttp/guzzle": "~6.0"
+		"guzzlehttp/guzzle": "~6.0",
+		"firebase/php-jwt": "^5.0"
   }
 }
