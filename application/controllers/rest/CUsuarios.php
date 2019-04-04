@@ -12,7 +12,6 @@ class CUsuarios extends MY_Controller
     public function do_login_post()
     {
         $email = $this->post('email'); //Username Posted
-        echo $email;die();
         $password = $this->post('password'); //Pasword Posted
         $kunci = $this->config->item('thekey');
 
