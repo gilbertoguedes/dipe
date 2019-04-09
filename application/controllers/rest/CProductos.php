@@ -194,6 +194,7 @@ class CProductos extends REST_Controller
         $this->response($result,201);
     }
 
+
     public function get_product_by_id_get($product_id,$store_id)
     {
         $product = $this->Products_model->product_info($product_id);
@@ -220,6 +221,17 @@ class CProductos extends REST_Controller
             $result['result'] = '2';
             $result['message'] = 'No existen productos';
         }
+
+        $this->response($result,201);
+    }
+
+    public function get_product_stock_get($product_id,$store_id)
+    {
+        $stock = $this->Products_model->store_stock_report_single_item_by_store($product_id,$store_id);
+
+        $result['result'] = '1';
+        $result['data'] = $stock;
+        $result['pagination'] = false;
 
         $this->response($result,201);
     }

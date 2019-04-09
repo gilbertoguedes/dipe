@@ -177,6 +177,8 @@ $route['api_get_popular_categories'] = 'rest/CCategories/get_popular_categories'
 
 $route['api_get_product_by_id/(:any)/(:any)'] = 'rest/CProductos/get_product_by_id/$1/$2';
 
+$route['api_get_product_stock/(:any)/(:any)'] = 'rest/CProductos/get_product_stock/$1/$2';
+
 $route['api_add_to_cart_details'] = 'rest/CProductos/add_to_cart_details';
 
 $route['api_get_cart_details'] = 'rest/CProductos/get_cart_details';
