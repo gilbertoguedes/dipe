@@ -12,7 +12,7 @@
                             <li class="breadcrumb-item active depi-capitalice-text"><?php echo "Sucursales";?></li>
                         </ol>
                     </nav> <!-- col.// -->
-                    <a class="btn ml-2 dipe-btn-warning btn-warning" href="<?php echo $_SERVER['HTTP_REFERER']; ?>">Seguir comprando</a>
+
         
                 </div> <!-- row.// -->
 
