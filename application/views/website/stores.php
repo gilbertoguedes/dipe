@@ -38,7 +38,7 @@
     </div> <!-- container .//  -->
 </section>
 <!-- ========================= SECTION PRODUCTOVIEW END// ========================= -->
-<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAIl9_rJ3hhYX1F0nv0n_7eCT27iju-0T4&libraries=places,geometry&sensor=false"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIl9_rJ3hhYX1F0nv0n_7eCT27iju-0T4&libraries=places,geometry&sensor=false"></script>
 <script type="text/javascript">
 
     $.ajax({
