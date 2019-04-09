@@ -1415,3 +1415,35 @@ nav .pagination .active{
 .dipe-cart-cantidad-upanddown{
     width: 40%;
 }
+
+
+/*Css para página de mapa*/
+#dvMap{
+    /*height: 668px;*/
+    /*width: 1085px;*/
+}
+
+.line{
+    height: 1px;
+    background-color: #ddd;
+    margin-top: 8px;
+    margin-bottom: 3px;
+}
+
+.view-link {
+    display:none !important;
+}
+.map-responsive{
+    overflow:hidden;
+    padding-bottom:56.25%;
+    position:relative;
+    height:auto;
+    width: 100%;
+}
+.map-responsive iframe{
+    left:0;
+    top:0;
+    height:100%;
+    width:100%;
+    position:absolute;
+}

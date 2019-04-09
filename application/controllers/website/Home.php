@@ -18,9 +18,15 @@ class Home extends CI_Controller {
 	//Default loading for Home Index.
 	public function index()
 	{
-		$content = $this->lhome->home_page();
+        $content = $this->lhome->home_page();
 		$this->template->full_website_html_view($content);
 	}
+
+    public function stores()
+    {
+        $content = $this->lhome->stores_page();
+        $this->template->full_website_html_view($content);
+    }
 
 	//Submit a subcriber.
 	public function add_subscribe()

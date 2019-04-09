@@ -79,6 +79,7 @@ $route['all_category'] = 'website/Category/all_category';
 $route['product_oferts/(:num)'] = 'website/Category/product_oferts/$1';
 $route['product_recomend'] = 'website/Category/product_recomend';
 $route['product_recomend/(:num)'] = 'website/Category/product_recomend/$1';
+$route['stores']= 'website/Home/stores';
 //Front end routing end
 
 //Admin Dashboard Start

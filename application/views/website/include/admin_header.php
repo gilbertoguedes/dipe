@@ -29,6 +29,7 @@
     <a href="/popular_category">Populares</a>
     <a href="/product_oferts">En Ofertas</a>
     <a href="/product_recomend">Recomendaciones</a>
+    <a href="/stores">Sucursales</a>
 </div>
 
 <div class="dipe-header-mobile-bar d-lg-none">
@@ -213,6 +214,9 @@
                 </li>
                 <li class="nav-item dipe-border-rb pb-0 <?php if ($this->uri->segment('1') == ("product_recomend")) { echo "nav-item-popular";} ?> px-1">
                     <a class="nav-link dipe-nav-link" href="/product_recomend"><i class="fa  fa-caret-right"></i> Recomendaciones</a>
+                </li>
+                <li class="nav-item dipe-border-rb pb-0 <?php if ($this->uri->segment('1') == ("stores")) { echo "nav-item-popular";} ?> px-1">
+                    <a class="nav-link dipe-nav-link" href="/stores"><i class="fa  fa-caret-right"></i> Sucursales</a>
                 </li>
                 <!--<li class="nav-item dipe-border-rb pb-0 px-1">
                     <a class="nav-link dipe-nav-link" href="paypal.com"><i class="fa  fa-caret-right"></i> Métodos de Envío</a>

@@ -70,7 +70,77 @@ class Lhome {
 			);
 		$HomeForm = $CI->parser->parse('website/home',$data,true);
 		return $HomeForm;
-	}	
+	}
+
+    public function stores_page()
+    {
+        $CI =& get_instance();
+        $CI->load->model('website/Homes');
+        $CI->load->model('web_settings');
+        $CI->load->model('Soft_settings');
+        $CI->load->model('Blocks');
+        $CI->load->model('Stores');
+        $CI->load->model('Catalogues');
+        $CI->load->model('Stores');
+        $store_default = $CI->Stores->store_default()->store_id;
+        $storeId = "";
+        if($CI->session->has_userdata('store_id'))
+        {
+            $storeId = $CI->session->userdata('store_id');
+        }
+        else
+        {
+            $storeId = $store_default;
+            $CI->session->set_userdata('store_id',$storeId);
+        }
+        $parent_category_list 	= $CI->Homes->parent_category_list();
+        $category_sub_family_list = $CI->Homes->category_sub_family_list();
+        $pro_category_list 		= $CI->Homes->category_list();
+        $best_sales 			= $CI->Homes->best_sales();
+        $footer_block 			= $CI->Homes->footer_block();
+        $slider_list 			= $CI->web_settings->slider_list();
+        $block_list 			= $CI->Blocks->block_list();
+        $products_recomend      = $CI->Catalogues->products_recomend($storeId);
+        $products_new      = $CI->Catalogues->products_new($storeId);
+        $products_ofert      = $CI->Catalogues->products_ofert($storeId);
+        $popular_category      = $CI->Homes->popular_category_list();
+        $currency_details 		= $CI->Soft_settings->retrieve_currency_info();
+        $Soft_settings 			= $CI->Soft_settings->retrieve_setting_editdata();
+        $languages 				= $CI->Homes->languages();
+        $currency_info 			= $CI->Homes->currency_info();
+        $selected_currency_info = $CI->Homes->selected_currency_info();
+        $select_home_adds 		= $CI->Homes->select_home_adds();
+
+        $stores = $CI->Stores->store_list();
+
+        //$store_default = $CI->Stores->store_default()->store_id;
+
+        $data = array(
+            'title' 		=> 'Sucursales',
+            'category_list' => $parent_category_list,
+            'pro_category_list' => $pro_category_list,
+            'category_sub_family_list' => $category_sub_family_list,
+            'slider_list' 	=> $slider_list,
+            'block_list' 	=> $block_list,
+            'products_recomend' => $products_recomend,
+            'products_new'      => $products_new,
+            'popular_category'  => $popular_category,
+            'products_ofert'    => $products_ofert,
+            'best_sales' 	=> $best_sales,
+            'footer_block' 	=> $footer_block,
+            'languages' 	=> $languages,
+            'currency_info' => $currency_info,
+            'select_home_adds' => $select_home_adds,
+            'selected_cur_id' => (($selected_currency_info->currency_id)?$selected_currency_info->currency_id:""),
+            'Soft_settings' => $Soft_settings,
+            'currency' 		=> $currency_details[0]['currency_icon'],
+            'position' 		=> $currency_details[0]['currency_position'],
+            'stores'        => $stores,
+            'store_default' => $store_default
+        );
+        $StoreForm = $CI->parser->parse('website/stores',$data,true);
+        return $StoreForm;
+    }
 
 	//Checkout
 	public function checkout()
