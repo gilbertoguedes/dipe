@@ -2,24 +2,6 @@
 <!-- ========================= SECTION PRODUCTOVIEW ========================= -->
 <section class="section-content bg padding-y-sm dipe-section-content">
     <div class="container">
-        <div class="card">
-            <div class="card-body">
-                <div class="row">
-
-                    <nav class="col-md-18-24">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="<?php echo base_url(); ?>"><?php echo display('home')?></a></li>
-                            <li class="breadcrumb-item active depi-capitalice-text"><?php echo "Sucursales";?></li>
-                        </ol>
-                    </nav> <!-- col.// -->
-
-        
-                </div> <!-- row.// -->
-
-
-            </div> <!-- card-body .// -->
-        </div> <!-- card.// -->
-
         <div class="padding-y-sm">
             <!--<span>3897 results for "Item"</span>-->
         </div>
