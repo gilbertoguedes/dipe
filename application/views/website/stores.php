@@ -2,21 +2,11 @@
 <!-- ========================= SECTION PRODUCTOVIEW ========================= -->
 <section class="section-content bg padding-y-sm dipe-section-content">
     <div class="container">
-        <div class="padding-y-sm">
-            <!--<span>3897 results for "Item"</span>-->
-        </div>
-
-
-
-
         <div class="card">
             <div class="row no-gutters">
                 <div id="dvMap" class="map-responsive" ></div>
             </div> <!-- row.// -->
         </div> <!-- card.// -->
-
-
-
     </div> <!-- container .//  -->
 </section>
 <!-- ========================= SECTION PRODUCTOVIEW END// ========================= -->
