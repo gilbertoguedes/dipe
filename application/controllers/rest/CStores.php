@@ -9,7 +9,7 @@ class CStores extends REST_Controller
 
     public function stores_all_get()
     {
-        $stores = $this->Stores->store_list();
+        $stores = $this->Stores->store_list_include_inactive();
 
         $result = array();
 

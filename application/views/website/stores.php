@@ -79,12 +79,27 @@
                 for (var i = 0; i < markers.length; i++) {
                     var data = markers[i]
                     var myLatlng = new google.maps.LatLng(data.lat, data.lng);
-                    var marker = new google.maps.Marker({
-                        position: myLatlng,
-                        map: map,
-                        store_name: data.store_name,
-                        icon: "my-assets/image/dipe-marker_icon.png"
-                    });
+
+
+                    if(data.activate=='1')
+                    {
+                        var marker = new google.maps.Marker({
+                            position: myLatlng,
+                            map: map,
+                            store_name: data.store_name,
+                            icon: "my-assets/image/dipe-marker_icon.png"
+                        });
+                    }
+                    else
+                    {
+                        var marker = new google.maps.Marker({
+                            position: myLatlng,
+                            map: map,
+                            store_name: data.store_name,
+                            icon: "my-assets/image/dipe-marker_icon_inactive.png"
+                        });
+                    }
+
                     (function (marker, data) {
                         google.maps.event.addListener(marker, "click", function (e) {
                             map.setZoom(14);

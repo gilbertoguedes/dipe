@@ -9,6 +9,7 @@ class Stores extends CI_Model {
 	{
 		$this->db->select('*');
 		$this->db->from('store_set');
+        $this->db->where('activate','1');
 		$this->db->order_by('store_name','asc');
 		$query = $this->db->get();
 		if ($query->num_rows() > 0) {
@@ -16,6 +17,18 @@ class Stores extends CI_Model {
 		}
 		return false;
 	}
+
+    public function store_list_include_inactive()
+    {
+        $this->db->select('*');
+        $this->db->from('store_set');
+        $this->db->order_by('store_name','asc');
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            return $query->result_array();
+        }
+        return false;
+    }
 
 
     public function store_default()
