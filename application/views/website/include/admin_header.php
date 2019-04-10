@@ -216,7 +216,7 @@
                     <a class="nav-link dipe-nav-link" href="/product_recomend"><i class="fa  fa-caret-right"></i> Recomendaciones</a>
                 </li>
                 <li class="nav-item dipe-border-rb pb-0 <?php if ($this->uri->segment('1') == ("stores")) { echo "nav-item-popular";} ?> px-1">
-                    <a class="nav-link dipe-nav-link" href="/stores"><i class="fa  fa-caret-right"></i> Sucursales</a>
+                    <a class="nav-link dipe-nav-link" href="/stores"><i class="fa  fa-map-marker-alt"></i> Sucursales</a>
                 </li>
                 <!--<li class="nav-item dipe-border-rb pb-0 px-1">
                     <a class="nav-link dipe-nav-link" href="paypal.com"><i class="fa  fa-caret-right"></i> Métodos de Envío</a>
