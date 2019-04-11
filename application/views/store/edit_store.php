@@ -87,6 +87,39 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="store_zip" class="col-sm-3 col-form-label"><?php echo 'Código zip'; ?> <i class="text-danger">*</i></label>
+                            <div class="col-sm-6">
+                                <input class="form-control" name ="zip" id="store_zip" type="text" placeholder="<?php echo 'Código zip'; ?>"  required="" value="{zip}">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="store_lat" class="col-sm-3 col-form-label"><?php echo 'Latitud'; ?> <i class="text-danger">*</i></label>
+                            <div class="col-sm-6">
+                                <input class="form-control" name ="lat" id="store_lat" type="text" placeholder="<?php echo 'Latitud'; ?>"  required="" value="{lat}">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="store_lng" class="col-sm-3 col-form-label"><?php echo 'Longitud'; ?> <i class="text-danger">*</i></label>
+                            <div class="col-sm-6">
+                                <input class="form-control" name ="lng" id="lng" type="text" placeholder="<?php echo 'Longitud'; ?>"  required="" value="{lng}">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="example-text-input" class="col-sm-3 col-form-label"><?php echo 'Activado';?> <i class="text-danger">*</i></label>
+                            <div class="col-sm-6">
+                                <select class="form-control" id="activate" required="" name="activate">
+                                    <option value=""></option>
+                                    <option value="1" <?php if ($activate == 1) {echo "selected";}?>><?php echo display('yes')?></option>
+                                    <option value="0" <?php if ($activate == 0) {echo "selected";}?>><?php echo display('no')?></option>
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
                             <label for="example-text-input" class="col-sm-3 col-form-label"><?php echo display('default_status')?> <i class="text-danger">*</i></label>
                             <div class="col-sm-6">
                                 <select class="form-control" id="default_status" required="" name="default_status">

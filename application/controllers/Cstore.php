@@ -35,7 +35,12 @@ class Cstore extends CI_Controller {
 				'store_name' 	=> $this->input->post('store_name'),
 				'store_address' => $this->input->post('store_address'),
 				'default_status' => $this->input->post('default_status'),
-                'catalogue_id' => $this->input->post('catalogue_id')
+                'catalogue_id' => $this->input->post('catalogue_id'),
+                'catalogue_id' => $this->input->post('catalogue_id'),
+                'zip' => $this->input->post('zip'),
+                'lat' => $this->input->post('lat'),
+                'lng' => $this->input->post('lng'),
+                'activate' => $this->input->post('activate')
 
 				);
 
@@ -89,7 +94,11 @@ class Cstore extends CI_Controller {
 				'store_name' 	=> $this->input->post('store_name'),
 				'store_address'	=> $this->input->post('store_address'),
 				'default_status'	=> $this->input->post('default_status'),
-                'catalogue_id' => $this->input->post('catalogue_id')
+                'catalogue_id' => $this->input->post('catalogue_id'),
+                'zip' => $this->input->post('zip'),
+                'lat' => $this->input->post('lat'),
+                'lng' => $this->input->post('lng'),
+                'activate' => $this->input->post('activate')
             );
 
 			$result=$this->Stores->update_store($data,$store_id);

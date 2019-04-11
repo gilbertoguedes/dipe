@@ -42,7 +42,7 @@ class Lstore {
 	{
 		$CI =& get_instance();
 		$CI->load->model('Stores');
-		$store_list = $CI->Stores->store_list(); 
+		$store_list = $CI->Stores->store_list_include_inactive();
 
 		$i=0;
 		if(!empty($store_list)){	
@@ -98,6 +98,10 @@ class Lstore {
             'catalogue_id' 	=> $store_details[0]['catalogue_id'],
 			'store_address' => $store_details[0]['store_address'],
 			'default_status' => $store_details[0]['default_status'],
+            'zip' => $store_details[0]['zip'],
+            'lat' => $store_details[0]['lat'],
+            'lng' => $store_details[0]['lng'],
+            'activate' => $store_details[0]['activate'],
             'catalogues_list' => $catalogues_list
 			);
 		$chapterList = $CI->parser->parse('store/edit_store',$data,true);
