@@ -196,6 +196,7 @@ class Cproduct extends CI_Controller {
 			'product_id' 			=> $product_id,
 			'product_name' 			=> $this->input->post('product_name'),
             'category_clave' 			=> $this->input->post('category_clave'),
+            'clave_interna' 			=> $this->input->post('clave_interna'),
 			'supplier_id' 			=> $this->input->post('supplier_id'),
 			'category_id' 			=> $this->input->post('category_id'),
 			'price' 				=> $this->input->post('price'),
@@ -439,6 +440,7 @@ class Cproduct extends CI_Controller {
 		$data=array(
 			'product_name' 			=> $this->input->post('product_name'),
             'category_clave' 			=> $this->input->post('category_clave'),
+            'clave_interna' 			=> $this->input->post('clave_interna'),
 			'supplier_id' 			=> $this->input->post('supplier_id'),
 			'category_id' 			=> $this->input->post('category_id'),
 			'price' 				=> $this->input->post('price'),

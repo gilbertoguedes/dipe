@@ -40,7 +40,7 @@ class Orders extends CI_Model {
 
         if ($order!=null) {
             //$this->db->select('a.*,b.product_name,b.price,b.product_id,b.unit,c.amount');
-            $this->db->select('a.*,b.product_name,b.price,b.product_id,b.unit,b.category_clave,u.unit_name');
+            $this->db->select('a.*,b.product_name,b.price,b.product_id,b.clave_interna,b.unit,b.category_clave,u.unit_name');
             $this->db->from('order_details a');
             //$this->db->join('order_tax_col_details c','a.product_id = c.product_id','left');
             $this->db->join('product_information b','b.product_id = a.product_id','left');

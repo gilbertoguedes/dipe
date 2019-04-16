@@ -261,7 +261,7 @@
                                         <div class="col-sm-7">
                                             <div class="form-group row">
                                                 <label for="product_name" class="col-sm-6 col-form-label"><?php echo display('product_name') ?> <span class="color-red">*</span></label>
-                                                <div class="col-sm-6"> 
+                                                <div class="col-sm-6">
                                                     <input class="form-control" name="product_name" type="text" id="product_name" placeholder="<?php echo display('product_name') ?>" required="">
                                                 </div>
                                             </div>
@@ -272,6 +272,17 @@
                                                 <label for="image_thumb" class="col-sm-3 col-form-label"><?php echo display('image') ?></label>
                                                 <div class="col-sm-9">
                                                     <input type="file" name="image_thumb" class="form-control" id="image_thumb">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-7">
+                                            <div class="form-group row">
+                                                <label for="product_name" class="col-sm-6 col-form-label"><?php echo 'Clave interna'; ?> <span class="color-red">*</span></label>
+                                                <div class="col-sm-6">
+                                                    <input class="form-control" name="clave_interna" type="text" id="clave_interna" placeholder="<?php echo 'Clave interna'; ?>" required="">
                                                 </div>
                                             </div>
                                         </div>

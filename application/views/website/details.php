@@ -84,7 +84,7 @@ if (!empty($currency_new_id)) {
                 <aside class="col-sm-7">
                     <article class="p-5">
                         <h3 class="title mb-3 dipe-color-6"><?php echo $product_name?></h3>
-                        <h6 class="title mb-3 dipe-color-6">Clave: <?php echo $product_id;?></h6>
+                        <h6 class="title mb-3 dipe-color-6">Clave: <?php echo $clave_interna;?></h6>
 
                         <div class="rating-wrap p-3 dipe-gray-1-bg ">
                             <?php

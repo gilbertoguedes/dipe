@@ -448,7 +448,7 @@ foreach($order_details as $o)
     $importe = round(($o['total_price']-($o['quantity']*$o['discount']))-$o['amount'],2);
     $html .= '<tr>';
     $html .= '<td style="">'.$o['category_clave'].'</td>';
-    $html .= '<td style="">'.$o['product_id'].'</td>';
+    $html .= '<td style="">'.$o['clave_interna'].'</td>';
     $html .= '<td style="">'.$o['quantity'].'</td>';
     $html .= '<td style="">'.$o['unit_name'].'</td>';
     $html .= '<td style="">'.$o['product_name'].'</td>';

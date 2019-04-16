@@ -192,6 +192,7 @@ class Lproduct {
 			'product_id' 			=> $product_detail[0]['product_id'],
 			'product_name' 			=> $product_detail[0]['product_name'],
             'category_clave' 			=> $product_detail[0]['category_clave'],
+            'clave_interna' 			=> $product_detail[0]['clave_interna'],
 			'price' 				=> $product_detail[0]['price'],
 			'product_details' 		=> $product_detail[0]['product_details'],
 			'unit' 					=> $product_detail[0]['unit'],

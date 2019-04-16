@@ -98,6 +98,17 @@
                                     <div class="row">
                                         <div class="col-sm-7">
                                             <div class="form-group row">
+                                                <label for="clave" class="col-sm-6 col-form-label"><?php echo 'Clave interna'; ?> <span class="color-red">*</span></label>
+                                                <div class="col-sm-6">
+                                                    <input class="form-control" name="clave_interna" type="text" id="clave_interna" placeholder="<?php echo 'Clave interna'; ?>" value="{clave_interna}" required="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-7">
+                                            <div class="form-group row">
                                                 <label for="image_thumb" class="col-sm-6 col-form-label"><?php echo display('image') ?></label>
                                                 <div class="col-sm-6">
                                                     <input type="file" name="image_thumb" class="form-control">
