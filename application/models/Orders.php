@@ -15,17 +15,37 @@ class Orders extends CI_Model {
 	//order List
 	public function order_list()
 	{
-		$this->db->select('a.*,b.customer_name');
+		$this->db->select('a.*,b.customer_name,o.state');
 		$this->db->from('order a');
 		$this->db->join('customer_information b','b.customer_id = a.customer_id');
+        $this->db->join('order_state o','o.id = a.order_state_id');
 		$this->db->order_by('a.order','desc');
-		$this->db->limit('500');
+		/*$this->db->limit('500');*/
 		$query = $this->db->get();
 		if ($query->num_rows() > 0) {
 			return $query->result_array();	
 		}
 		return false;
 	}
+
+    public function order_state()
+    {
+        $this->db->select('a.*');
+        $this->db->from('order_state a');
+        $this->db->order_by('a.id','asc');
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            return $query->result_array();
+        }
+        return false;
+    }
+
+    public function update_order_state($order_id,$data)
+    {
+        $this->db->where('order_id', $order_id);
+        $this->db->update('order',$data);
+        return true;
+    }
 
     public function order_by_id($idOrder)
     {
@@ -1046,13 +1066,18 @@ class Orders extends CI_Model {
 				c.product_id,
 				d.product_name,
 				d.product_model,
-				a.status
+				d.clave_interna,
+				e.unit_short_name,
+				a.status,
+				o.state
 			');
 
 		$this->db->from('order a');
+        $this->db->join('order_state o','o.id = a.order_state_id');
 		$this->db->join('customer_information b','b.customer_id = a.customer_id');
 		$this->db->join('order_details c','c.order_id = a.order_id');
 		$this->db->join('product_information d','d.product_id = c.product_id');
+        $this->db->join('unit e','e.unit_id = d.unit');
 		$this->db->where('a.order_id',$order_id);
 		$query = $this->db->get();
 

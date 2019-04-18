@@ -17,6 +17,30 @@
     </section>
 
 	<section class="content">
+        <!-- Alert Message -->
+        <?php
+        $message = $this->session->userdata('message');
+        if (isset($message)) {
+            ?>
+            <div class="alert alert-info alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <?php echo $message ?>
+            </div>
+            <?php
+            $this->session->unset_userdata('message');
+        }
+        $error_message = $this->session->userdata('error_message');
+        if (isset($error_message)) {
+            ?>
+            <div class="alert alert-danger alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <?php echo $error_message ?>
+            </div>
+            <?php
+            $this->session->unset_userdata('error_message');
+        }
+        ?>
+
         <div class="row">
             <div class="col-sm-12">
                 <div class="panel panel-bd lobidrag">
@@ -25,15 +49,50 @@
                             <h4><?php echo "Mi Pedido"; ?></h4>
                         </div>
                     </div>
-                    <?php echo form_open('Corder/order_update',array('class' => 'form-vertical','id'=>'validate' ))?>
-                    <div class="panel-body">
 
+                    <div class="panel-body">
+                        <?php if($this->session->userdata('user_type')==4){ ?>
+                        <?php echo form_open('Corder/order_state_update',array('class' => 'form-vertical','id'=>'validate' ))?>
+                        <input type="hidden" name="order_id" value="{order_id}">
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="form-group row">
-                                    <h4 class="col-sm-3"><?php echo display('date'); ?>: <small>{date}</small></h4>
+                                    <div class="col-sm-1">
+                                        <label for="order_state" class="col-form-label"><?php echo 'Estado:'; ?></label>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <select class="form-control select2" id="order_state" name="order_state" style="width: 100%" required="">
+                                            <option value=""></option>
+                                            <?php
+                                            foreach ($order_state as $state) {
+                                                ?>
+                                                <?php if($variante_entrega==1){ ?>
+                                                    <?php if($state['id']!=4){ ?>
+                                                        <option value="<?php echo $state['id']?>" <?php if ($state['id'] == $order_state_id) {echo "selected"; }?>><?php echo $state['action']?></option>
+                                                    <?php } ?>
+                                                <?php } else {?>
+                                                    <option value="<?php echo $state['id']?>" <?php if ($state['id'] == $order_state_id) {echo "selected"; }?>><?php echo $state['action']?></option>
+                                                <?php } ?>
+                                                <?php
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-1">
+                                        <button type="submit"  class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="left" title="<?php echo "Actualizar estado"; ?>"> Actualizar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <?php echo form_close()?>
+                        <?php } ?>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group row">
+                                    <h4 class="col-sm-4"><?php echo 'Estado'; ?>: <small>{state}</small></h4>
+                                    <h4 class="col-sm-4"><?php echo display('date'); ?>: <small>{date}</small></h4>
                                     <h4 class="col-sm-3"><?php echo "Método de Pago"; ?>: <small><?php echo "PAYPAL"; ?></small></h4>
-                                    <h4 class="col-sm-3">Entregado: <small>NO</small></h4>
+                                    <h4 class="col-sm-2">Entregado: <small>NO</small></h4>
                                     <h4 class="col-sm-3">Facturado: <small><?php if($timbrado=="0")echo "NO"; else echo "SI"; ?></small>
                                         <?php if($timbrado!="0"){ ?>
                                             <a href="<?php echo base_url('assets/timbrados/'.$order_id.'.pdf');  ?>" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="left" title="<?php echo "Descargar Factura PDF"; ?>"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></a>
@@ -47,10 +106,11 @@
                             <table class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
-                                    <td><strong><?php echo display('product_name')?></strong></td>
+                                    <td><strong><?php echo 'Clave interna';?></strong></td>
                                     <td><strong><?php echo display('quantity')?></strong></td>
+                                    <td><strong><?php echo display('unit')?></strong></td>
+                                    <td><strong><?php echo display('product_name')?></strong></td>
                                     <td><strong><?php echo display('price')?></strong></td>
-                                    <td><strong><?php echo display('discount')?></strong></td>
                                     <td><strong><?php echo display('total')?></strong></th>
                                 </tr>
                                 </thead>
@@ -80,12 +140,16 @@
                                     ?>
                                     <tr>
                                         <td>
-                                            <a href="<?php echo base_url('product_details/'.$items['product_id'])?>"><?php echo $items['product_name']; ?></a>
+                                            <?php echo $items['clave_interna']; ?>
                                         </td>
                                         <td><?php echo $items['quantity']; ?></td>
+                                        <td>
+                                            <?php echo $items['unit_short_name']; ?>
+                                        </td>
+                                        <td>
+                                            <a href="<?php echo base_url('product_details/'.$items['product_id'])?>"><?php echo $items['product_name']; ?></a>
+                                        </td>
                                         <td><?php echo (($position==0)?$currency." ". $this->cart->format_number($items['rate']):$this->cart->format_number($items['rate'])." ". $currency) ?></td>
-
-                                        <td><?php echo (($position==0)?$currency." ". $this->cart->format_number($items['discount']):$this->cart->format_number($items['discount'])." ". $currency) ?></td>
 
                                         <td><?php echo (($position==0)?$currency ." ". $this->cart->format_number($items['rate'] * $items['quantity']):$this->cart->format_number($items['rate'] * $items['quantity'])." ". $currency) ?></td>
                                     </tr>
@@ -96,17 +160,12 @@
                                 </tbody>
 
                                 <tfoot>
-
-                                <tr>
-                                    <td colspan="4" class="text-right"><strong><?php echo display('total_discount')?>:</strong></td>
-                                    <td class="text-right"><?php echo (($position==0)?$currency ." ". number_format($discount, 2, '.', ','):number_format($discount, 2, '.', ',')." ". $currency)?></td>
-                                </tr>
                                 <?php
                                 $total_tax = $cgst+$sgst+$igst;
                                 if ($total_tax > 0) {
                                     ?>
                                     <tr>
-                                        <td colspan="4" class="text-right"><strong><?php echo display('total_tax')?>:</strong></td>
+                                        <td colspan="5" class="text-right"><strong><?php echo 'IVA 16%';?>:</strong></td>
                                         <td class="text-right">
                                             <?php
                                             $total_tax = $cgst+$sgst+$igst;
@@ -118,7 +177,7 @@
                                 }
                                 ?>
                                 <tr>
-                                    <td colspan="4" class="text-right"><strong><?php echo display('total')?>:</strong></td>
+                                    <td colspan="5" class="text-right"><strong><?php echo display('total')?>:</strong></td>
                                     <td class="text-right">
                                         <?php
                                         $cart_total = $this->cart->total() + $this->_cart_contents['cart_ship_cost'] + $total_tax - $coupon_amnt;
@@ -182,7 +241,6 @@
                             <?php }  ?>
                         </div>
                     </div>
-                    <?php echo form_close()?>
                 </div>
             </div>
         </div>

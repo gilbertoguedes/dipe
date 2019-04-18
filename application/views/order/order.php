@@ -60,6 +60,7 @@
 										<th><?php echo display('customer_name') ?></th>
 										<th><?php echo display('date') ?></th>
 										<th><?php echo display('total_amount') ?></th>
+										<th><?php echo 'Estado'; ?></th>
                                         <th><?php echo display('action') ?></th>
 									</tr>
 								</thead>
@@ -74,9 +75,18 @@
                                             <td><?php echo $order['order']?></td>
                                             <td><a href="<?php echo base_url().'Ccustomer/customer_update_form/'.$order['customer_id']; ?>"><?php echo $order['customer_name']?></a></td>
                                             <td><?php echo $order['final_date']?></td>
-                                            <td><?php echo $order['final_date']?></td>
-                                            <td style="text-align: right;"><?php echo (($position==0)?$currency.' '.$order['total_amount']:$order['total_amount'].' '.$currency) ?></td>
-                                            <td>
+											<td style="text-align: right;"><?php echo (($position==0)?$currency.' '.$order['total_amount']:$order['total_amount'].' '.$currency) ?></td>
+											<td><?php $state = $order['state']; if($order['order_state_id']==3){
+													if($order['variante_entrega']==1){
+														$state = $state.' recoger';
+													}
+													else
+													{
+														$state = $state.' enviar';
+													}
+												} echo $state;?>
+											</td>
+											<td>
                                                 <?php if($order['timbrado']==1){ ?>
                                                     <a href="<?php echo base_url('Corder/store_show_order/'.$order['order_id']); ?>" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="left" title="<?php echo "Mostrar Pedido"; ?>"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                                     <a href="<?php echo base_url('assets/timbrados/'.$order['order_id'].'.pdf');  ?>" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="left" title="<?php echo "Descargar Factura PDF"; ?>"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></a>
@@ -101,9 +111,18 @@
                                                     <td><?php echo $order['order']?></td>
                                                     <td><a href="<?php echo base_url().'Ccustomer/customer_update_form/'.$order['customer_id']; ?>"><?php echo $order['customer_name']?></a></td>
                                                     <td><?php echo $order['final_date']?></td>
-                                                    <td><?php echo $order['final_date']?></td>
-                                                    <td style="text-align: right;"><?php echo (($position==0)?$currency.' '.$order['total_amount']:$order['total_amount'].' '.$currency) ?></td>
-                                                    <td>
+													<td style="text-align: right;"><?php echo (($position==0)?$currency.' '.$order['total_amount']:$order['total_amount'].' '.$currency) ?></td>
+													<td><?php $state = $order['state']; if($order['order_state_id']==3){
+															if($order['variante_entrega']==1){
+																$state = $state.' recoger';
+															}
+															else
+															{
+																$state = $state.' enviar';
+															}
+														} echo $state;?>
+													</td>
+													<td>
                                                         <?php if($order['timbrado']==1){ ?>
                                                             <a href="<?php echo base_url('Corder/store_show_order/'.$order['order_id']); ?>" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="left" title="<?php echo "Mostrar Pedido"; ?>"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                                             <a href="<?php echo base_url('assets/timbrados/'.$order['order_id'].'.pdf');  ?>" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="left" title="<?php echo "Descargar Factura PDF"; ?>"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></a>

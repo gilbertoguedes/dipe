@@ -63,7 +63,7 @@ class Lorder {
 	}
 
     //Retrieve  order List
-    public function order_list_by_store()
+    /*public function order_list_by_store()
     {
         $CI =& get_instance();
         $CI->load->model('Orders');
@@ -91,7 +91,7 @@ class Lorder {
         );
         $orderList = $CI->parser->parse('order/order',$data,true);
         return $orderList;
-    }
+    }*/
 
 
 	//Insert order
@@ -385,14 +385,28 @@ class Lorder {
         $CI =& get_instance();
         $CI->load->model('Orders');
         $CI->load->model('Stores');
-
+        $CI->load->library('occational');
 
 
         $order_detail 	  = $CI->Orders->retrieve_order_editdata($order_id);
 
+        $order_state 	  = $CI->Orders->order_state();
+
         $i=0;
         foreach($order_detail as $k=>$v){$i++;
             $order_detail[$k]['sl']=$i;
+        }
+
+        $state = $order_detail[0]['state'];
+
+        if($order_detail[0]['order_state_id']==3)
+        {
+            if($order_detail[0]['variante_entrega']==1)
+            {
+                $state = $state.' recoger';
+            }
+            else
+                $state = $state.' enviar';
         }
 
         $data=array(
@@ -401,7 +415,7 @@ class Lorder {
             'customer_id'		=>	$order_detail[0]['customer_id'],
             'store_id'			=>	$order_detail[0]['store_id'],
             'customer_name'		=>	$order_detail[0]['customer_name'],
-            'date'				=>	$order_detail[0]['date'],
+            'date'				=>	$CI->occational->dateConvert($order_detail[0]['date']),
             'total_amount'		=>	$order_detail[0]['total_amount'],
             'paid_amount'		=>	$order_detail[0]['paid_amount'],
             'due_amount'		=>	$order_detail[0]['due_amount'],
@@ -412,6 +426,7 @@ class Lorder {
             'order'				=>	$order_detail[0]['order'],
             'status'			=>	$order_detail[0]['status'],
             'timbrado'			=>	$order_detail[0]['timbrado'],
+            'order_state_id'			=>	$order_detail[0]['order_state_id'],
             'variante_entrega'  =>  $order_detail[0]['variante_entrega'],
             'order_all_data'	=>	$order_detail,
             'customer_name'	=>	$order_detail[0]['customer_env_name'],
@@ -426,6 +441,8 @@ class Lorder {
             'customer_state'	=>	$order_detail[0]['customer_env_state'],
             'customer_zip'	=>	$order_detail[0]['customer_env_zip'],
             'customer_refer'	=>	$order_detail[0]['customer_env_refer'],
+            'order_state' => $order_state,
+            'state' => $state,
         );
 
         $chapterList = $CI->parser->parse('order/show_order',$data,true);

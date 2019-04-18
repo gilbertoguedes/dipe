@@ -100,6 +100,18 @@ class Corder extends CI_Controller {
 		$this->session->set_userdata(array('message'=>display('successfully_updated')));
 		$this->order_inserted_data($order_id);
 	}
+	public function order_state_update()
+    {
+        $order_state = $this->input->post('order_state');
+        $order_id = $this->input->post('order_id');
+        $data = array();
+        $data['order_state_id'] = $order_state;
+        $CI =& get_instance();
+        $CI->load->model('Orders');
+        $CI->Orders->update_order_state($order_id,$data);
+        $this->session->set_userdata(array('message'=>display('successfully_updated')));
+        redirect('Corder/store_show_order/'.$order_id);
+    }
 	// order paid data
 	public function order_paid_data($order_id){
 		$CI =& get_instance();
