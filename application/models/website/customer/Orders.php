@@ -11,9 +11,10 @@ class Orders extends CI_Model {
 	public function order_list()
 	{
 		$customer_id = $this->session->userdata('customer_id');
-		$this->db->select('a.*,b.customer_name');
+		$this->db->select('a.*,b.customer_name,o.state');
 		$this->db->from('order a');
 		$this->db->join('customer_information b','b.customer_id = a.customer_id');
+        $this->db->join('order_state o','o.id = a.order_state_id');
 		$this->db->where('b.customer_id',$customer_id);
 		$this->db->order_by('a.order','desc');
 		$query = $this->db->get();
