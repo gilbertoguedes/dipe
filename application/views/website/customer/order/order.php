@@ -83,7 +83,7 @@
 										<td><?php echo $order['customer_name']?></td>
 										<td><?php echo $order['final_date']?></td>
 										<td style="text-align: right;"><?php echo (($position==0)?$currency.' '.$order['total_amount']:$order['total_amount'].' '.$currency) ?></td>
-										<td><?php $state = $order['state']; if($order['order_state_id']==3){
+										<td style="<?php if($order['order_state_id']==1){echo 'border: 1px solid red; color: red;';} else if($order['order_state_id']==2){echo 'border: 1px solid yellow; color: yellow;';} else if($order['order_state_id']==3){echo 'border: 1px solid orange; color: orange;';} else if($order['order_state_id']==4){echo 'border: 1px solid blue; color: blue;';} else if($order['order_state_id']==5){echo 'border: 1px solid green; color: green;';} ?>" class="<?php if($order['order_state_id']==1){echo 'order_state_1';} ?>"><?php $state = $order['state']; if($order['order_state_id']==3){
 												if($order['variante_entrega']==1){
 													$state = $state.' recoger';
 												}
