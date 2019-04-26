@@ -74,6 +74,20 @@
 		    </div>
 	    </div>
 
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<form action="<?php echo base_url('Cproduct/product_by_search_clave')?>" class="form-inline" method="post" accept-charset="utf-8">
+							<label class="select"><?php echo 'Clave interna'?>:</label>
+							<input class="form-control" name="clave_interna" type="text" id="clave_interna" placeholder="<?php echo 'Clave interna'; ?>">
+							<button type="submit" class="btn btn-primary"><?php echo display('submit')?></button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
 
 		<!-- Manage Product report -->
 		<div class="row">
@@ -91,7 +105,7 @@
 									<tr>
                                         <th style="width : 130px; min-width : 130px"><?php echo display('action') ?></th>
 										<th><?php echo display('sl') ?></th>
-										<th><?php echo display('category_clave') ?></th>
+										<th><?php echo 'Clave interna'; ?></th>
 										<th><?php echo display('product_name') ?></th>
 										<th><?php echo display('supplier') ?></th>
 										<th><?php echo display('subfamily') ?></th>
@@ -126,7 +140,7 @@
                                             </center>
                                         </td>
 										<td>{sl}</td>
-										<td>{category_clave}</td>
+										<td>{clave_interna}</td>
 										<td>
 											<a href="<?php echo base_url().'Cproduct/product_details/{product_id}'; ?>">{product_name}</a>
 										</td>

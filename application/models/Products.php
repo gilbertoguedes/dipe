@@ -283,7 +283,31 @@ class Products extends CI_Model {
 			return $query->result_array();	
 		}
 		return false;
-	}	
+	}
+
+    public function product_search_item_clave($product_clave)
+    {
+        $query=$this->db->select('
+			supplier_information.*,
+			product_information.*,
+			product_category.category_name,
+			unit.unit_short_name
+		')
+
+            ->from('product_information')
+            ->join('supplier_information', 'product_information.supplier_id = supplier_information.supplier_id','left')
+            ->join('product_category','product_category.category_id = product_information.category_id','left')
+            ->join('unit','unit.unit_id = product_information.unit','left')
+            ->where('product_information.clave_interna',$product_clave)
+            ->order_by('product_information.product_name','desc')
+            ->group_by('product_information.product_id')
+            ->get();
+
+        if ($query->num_rows() > 0) {
+            return $query->result_array();
+        }
+        return false;
+    }
 	
 	//Duplicate Entry Checking 
 	public function product_model_search($product_model)

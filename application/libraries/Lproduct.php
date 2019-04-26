@@ -137,6 +137,33 @@ class Lproduct {
 		}
 	}
 
+    public function product_search_list_clave($product_clave)
+    {
+        $CI =& get_instance();
+        $CI->load->model('Products');
+        $CI->load->model('Soft_settings');
+        $products_list = $CI->Products->product_search_item_clave($product_clave);
+        $all_product_list = $CI->Products->all_product_list();
+        $i=0;
+        if ($products_list) {
+            foreach($products_list as $k=>$v){$i++;
+                $products_list[$k]['sl']=$i;
+            }
+            $currency_details = $CI->Soft_settings->retrieve_currency_info();
+            $data = array(
+                'title' 		=> display('manage_product'),
+                'products_list' => $products_list,
+                'all_product_list' => $all_product_list,
+                'currency' 	=> $currency_details[0]['currency_icon'],
+                'position' 	=> $currency_details[0]['currency_position'],
+            );
+            $productList = $CI->parser->parse('product/product',$data,true);
+            return $productList;
+        }else{
+            redirect('Cproduct/manage_product');
+        }
+    }
+
 
 	//Product Edit Data
 	public function product_edit_data($product_id)

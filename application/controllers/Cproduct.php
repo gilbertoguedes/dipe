@@ -501,6 +501,17 @@ class Cproduct extends CI_Controller {
         $content = $CI->lproduct->product_search_list($product_id);
 		$this->template->full_admin_html_view($content);
 	}
+
+    public function product_by_search_clave()
+    {
+        $CI =& get_instance();
+        $this->auth->check_admin_auth();
+        $CI->load->library('lproduct');
+        $product_clave = $this->input->post('clave_interna');
+        $content = $CI->lproduct->product_search_list_clave($product_clave);
+        $this->template->full_admin_html_view($content);
+    }
+
 	//Retrieve Single Item  By Search
 	public function product_details($product_id)
 	{
