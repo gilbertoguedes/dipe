@@ -125,7 +125,7 @@ class Products extends CI_Model {
         $this->db->select('*');
 		$this->db->from('product_information');
 		$this->db->where('status',1);
-		$this->db->where('category_clave',$data['category_clave']);
+		$this->db->where('clave_interna',$data['clave_interna']);
 		$query = $this->db->get();
 		if ($query->num_rows() > 0) {
 			return FALSE;
