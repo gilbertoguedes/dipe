@@ -1056,14 +1056,18 @@ class Home extends CI_Controller {
             $cadena = '';
             $cadena = $cadena.'<P>';
                 $cadena = $cadena.'<business>';
-                    $cadena = $cadena.'<id_company>SNBX</id_company>';
+                    /*$cadena = $cadena.'<id_company>SNBX</id_company>';
                     $cadena = $cadena.'<id_branch>01SNBXBRNCH</id_branch>';
                     $cadena = $cadena.'<user>SNBXUSR01</user>';
-                    $cadena = $cadena.'<pwd>SECRETO</pwd>';
+                    $cadena = $cadena.'<pwd>SECRETO</pwd>';*/
+                    $cadena = $cadena.'<id_company>0596</id_company>';
+                    $cadena = $cadena.'<id_branch>015</id_branch>';
+                    $cadena = $cadena.'<user>0596SIUS0</user>';
+                    $cadena = $cadena.'<pwd>IUYVXX882D</pwd>';
                 $cadena = $cadena.'</business>';
                 $cadena = $cadena.'<url>';
                     $date = new DateTime();
-                    $cadena = $cadena.'<reference>Orden-'.$date->format('d-m-Y H:i:s').'</reference>';
+                    $cadena = $cadena.'<reference>'.$order_id.'</reference>';
                     $cadena = $cadena.'<amount>'.$this->session->userdata('cart_total').'</amount>';
                     $cadena = $cadena.'<moneda>MXN</moneda>';
                     $cadena = $cadena.'<canal>W</canal>';
@@ -1085,15 +1089,18 @@ class Home extends CI_Controller {
                 $cadena = $cadena.'</url>';
             $cadena = $cadena.'</P>';
 
-            $key = '5dcc67393750523cd165f17e1efadd21';
+            //$key = '5dcc67393750523cd165f17e1efadd21';
+            $key = 'A538C3AE407B29A15F949674E4C6FD79';
 
             $this->load->library('santander/AESCrypto');
 
             $cadenaEncriptada = $this->aescrypto->encriptar($cadena, $key);
 
-            $encodedString = urlencode('<pgs><data0>SNDBX123</data0><data>'.$cadenaEncriptada.'</data></pgs>');
+            //$encodedString = urlencode('<pgs><data0>SNDBX123</data0><data>'.$cadenaEncriptada.'</data></pgs>');
+            $encodedString = urlencode('<pgs><data0>9265655119</data0><data>'.$cadenaEncriptada.'</data></pgs>');
 
-            $url = 'https://wppsandbox.mit.com.mx/gen';
+            //$url = 'https://wppsandbox.mit.com.mx/gen';
+            $url = 'https://bc.mitec.com.mx/p/gen';
 
             $params['xml'] = $encodedString;
 
@@ -1254,13 +1261,15 @@ class Home extends CI_Controller {
         $strResponse = $request['strResponse'];
         if($strResponse)
         {
-            echo $strResponse;
+            $pruebaFile = fopen("integracion.txt","w") or die("error");
+
+            fwrite($pruebaFile,$strResponse);
+            fclose($pruebaFile);
         }
         else
         {
             echo "NO existe el parámetro strResponse";
         }
-
         die();
     }
 
