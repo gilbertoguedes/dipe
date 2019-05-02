@@ -1266,7 +1266,7 @@ class Home extends CI_Controller {
         {
             if($this->input->get('nbResponse')=="Rechazado")
             {
-                $this->session->set_userdata('erro_message','Lo sentimos, tu pago ha sido rechazado por tu banco !');
+                $this->session->set_userdata('error_message','Lo sentimos, tu pago ha sido rechazado por tu banco !');
                 redirect('/checkout');
             }
             else if($this->input->get('nbResponse')=="Aprobado")
@@ -1305,7 +1305,7 @@ class Home extends CI_Controller {
             }
             else
             {
-                $this->session->set_userdata('erro_message','Lo sentimos, no podemos procesar la compra, si el error se repite, contacte al administardor !');
+                $this->session->set_userdata('error_message','Lo sentimos, no podemos procesar la compra, si el error se repite, contacte al administardor !');
                 redirect('/checkout');
             }
         }
