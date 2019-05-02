@@ -91,7 +91,7 @@
                                 <div class="form-group row">
                                     <h4 class="col-sm-4"><?php echo 'Estado'; ?>: <small>{state}</small></h4>
                                     <h4 class="col-sm-4"><?php echo display('date'); ?>: <small>{date}</small></h4>
-                                    <h4 class="col-sm-3"><?php echo "Método de Pago"; ?>: <small><?php echo "PAYPAL"; ?></small></h4>
+                                    <h4 class="col-sm-3"><?php echo "Método de Pago"; ?>: <small><?php echo "SANTANDER"; ?></small></h4>
                                     <h4 class="col-sm-2">Entregado: <small>NO</small></h4>
                                     <h4 class="col-sm-3">Facturado: <small><?php if($timbrado=="0")echo "NO"; else echo "SI"; ?></small>
                                         <?php if($timbrado!="0"){ ?>

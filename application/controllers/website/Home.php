@@ -210,7 +210,6 @@ class Home extends CI_Controller {
 
         if($qnty>$stock)
         {
-            echo "2";
             return;
         }
 
@@ -796,383 +795,390 @@ class Home extends CI_Controller {
 		$this->load->model('Soft_settings');
 		$this->load->model('Blocks');
 
-        $parent_category_list 	= $this->Homes->parent_category_list();
-		$pro_category_list 		= $this->Homes->category_list();
-		$best_sales 			= $this->Homes->best_sales();
-		$footer_block 			= $this->Homes->footer_block();
-		$slider_list 			= $this->Web_settings->slider_list();
-		$block_list 			= $this->Blocks->block_list(); 
-		$currency_details 		= $this->Soft_settings->retrieve_currency_info();
-		$Soft_settings 			= $this->Soft_settings->retrieve_setting_editdata();
-		$languages 				= $this->Homes->languages();
-		$currency_info 			= $this->Homes->currency_info();
-		$selected_currency_info = $this->Homes->selected_currency_info();
-		$select_home_adds 		= $this->Homes->select_home_adds();
+        if ($this->user_auth->is_logged())
+        {
+            $parent_category_list 	= $this->Homes->parent_category_list();
+            $pro_category_list 		= $this->Homes->category_list();
+            $best_sales 			= $this->Homes->best_sales();
+            $footer_block 			= $this->Homes->footer_block();
+            $slider_list 			= $this->Web_settings->slider_list();
+            $block_list 			= $this->Blocks->block_list();
+            $currency_details 		= $this->Soft_settings->retrieve_currency_info();
+            $Soft_settings 			= $this->Soft_settings->retrieve_setting_editdata();
+            $languages 				= $this->Homes->languages();
+            $currency_info 			= $this->Homes->currency_info();
+            $selected_currency_info = $this->Homes->selected_currency_info();
+            $select_home_adds 		= $this->Homes->select_home_adds();
 
-		//Settings code start
-    	$data['category_list'] 	= $parent_category_list;
-    	$data['pro_category_list'] 	= $pro_category_list;
-    	$data['slider_list'] 	= $slider_list;
-    	$data['block_list'] 	= $block_list;
-    	$data['best_sales'] 	= $best_sales;
-    	$data['footer_block'] 	= $footer_block;
-    	$data['languages'] 		= $languages;
-    	$data['currency_info'] 	= $currency_info;
-    	$data['select_home_adds'] 	= $select_home_adds;
-    	$data['selected_cur_id'] 	= (($selected_currency_info->currency_id)?$selected_currency_info->currency_id:"");
-    	$data['Soft_settings'] 	= $Soft_settings;
-    	$data['currency'] 		= $currency_details[0]['currency_icon'];
-    	$data['position'] 		= $currency_details[0]['currency_position'];
-		//Setting code end
+            //Settings code start
+            $data['category_list'] 	= $parent_category_list;
+            $data['pro_category_list'] 	= $pro_category_list;
+            $data['slider_list'] 	= $slider_list;
+            $data['block_list'] 	= $block_list;
+            $data['best_sales'] 	= $best_sales;
+            $data['footer_block'] 	= $footer_block;
+            $data['languages'] 		= $languages;
+            $data['currency_info'] 	= $currency_info;
+            $data['select_home_adds'] 	= $select_home_adds;
+            $data['selected_cur_id'] 	= (($selected_currency_info->currency_id)?$selected_currency_info->currency_id:"");
+            $data['Soft_settings'] 	= $Soft_settings;
+            $data['currency'] 		= $currency_details[0]['currency_icon'];
+            $data['position'] 		= $currency_details[0]['currency_position'];
+            //Setting code end
 
-		//Payment method
-		$order_id 		= $this->auth->generator(15);
-		$payment_method = $this->session->userdata('payment_method');
+            //Payment method
+            $order_id 		= $this->auth->generator(15);
+            $payment_method = $this->session->userdata('payment_method');
 
-        //Customer existing check
-		$email 					 = $this->input->post('customer_email');
-		$customer_existing_check = $this->Homes->check_customer($email);
+            //Customer existing check
+            $email 					 = $this->input->post('customer_email');
+            $customer_existing_check = $this->Homes->check_customer($email);
 
-        if ($customer_existing_check) {
-            $customer_id = $customer_existing_check->customer_id;
+            if ($customer_existing_check) {
+                $customer_id = $customer_existing_check->customer_id;
 
-            if($this->input->post('customer_save_data')=="1" && $this->input->post('customer_variant')=="2")
-            {
-                $data=array(
-                    'customer_information_send_data_id' => $this->auth->generator(20),
-                    'customer_id' => $customer_id,
-                    'customer_name' 		=> $this->input->post('customer_name'),
-                    'customer_phone_number' 		=> $this->input->post('customer_phone_number'),
-                    'customer_street' 		=> $this->input->post('customer_street'),
-                    'customer_inter_number' 		=> $this->input->post('customer_inter_number'),
-                    'customer_exter_number' 		=> $this->input->post('customer_exter_number'),
-                    'customer_colony' 		=> $this->input->post('customer_colony'),
-                    'customer_delegation' 		=> $this->input->post('customer_delegation'),
-                    'customer_state' 		=> $this->input->post('customer_state'),
-                    'customer_between1' 		=> $this->input->post('customer_between1'),
-                    'customer_between2' 		=> $this->input->post('customer_between2'),
-                    'customer_refer' 		=> $this->input->post('customer_refer'),
-                    'customer_zip' 		=> $this->input->post('customer_zip'),
+                if($this->input->post('customer_save_data')=="1" && $this->input->post('customer_variant')=="2")
+                {
+                    $data=array(
+                        'customer_information_send_data_id' => $this->auth->generator(20),
+                        'customer_id' => $customer_id,
+                        'customer_name' 		=> $this->input->post('customer_name'),
+                        'customer_phone_number' 		=> $this->input->post('customer_phone_number'),
+                        'customer_street' 		=> $this->input->post('customer_street'),
+                        'customer_inter_number' 		=> $this->input->post('customer_inter_number'),
+                        'customer_exter_number' 		=> $this->input->post('customer_exter_number'),
+                        'customer_colony' 		=> $this->input->post('customer_colony'),
+                        'customer_delegation' 		=> $this->input->post('customer_delegation'),
+                        'customer_state' 		=> $this->input->post('customer_state'),
+                        'customer_between1' 		=> $this->input->post('customer_between1'),
+                        'customer_between2' 		=> $this->input->post('customer_between2'),
+                        'customer_refer' 		=> $this->input->post('customer_refer'),
+                        'customer_zip' 		=> $this->input->post('customer_zip'),
+                    );
+
+                    $this->Customer_dashboards->insert_send_data($data);
+                }
+                //Shipping data entry
+                $ship_country_id = $this->session->userdata('ship_country');
+                $ship_country 	 = $this->db->select('*')
+                    ->from('countries')
+                    ->where('id',$ship_country_id)
+                    ->get()
+                    ->row();
+                //$ship_short_address = $this->session->userdata('ship_city').','.$this->session->userdata('ship_state').','.$ship_country->name.','.$this->session->userdata('ship_zip');
+                $ship_short_address = $this->input->post('customer_street').', entre '.$this->input->post('customer_between1').' y '.$this->input->post('customer_between2').','.
+                    $this->input->post('customer_zip');
+
+                //New customer shipping entry
+                $shipping=array(
+                    'customer_id' 	=> $customer_id,
+                    'customer_name' => $this->input->post('customer_name'),
+                    'first_name' 	=> $this->input->post('customer_first_lastname'),
+                    'last_name' 	=> $this->input->post('customer_secon_lastname'),
+                    'customer_short_address'=> $ship_short_address,
+                    'state' 		=> $this->input->post('customer_state'),
+                    'zip' 			=> $this->input->post('customer_zip'),
+                    'customer_mobile'=> $this->input->post('customer_phone_number'),
+                    'customer_email' => $this->input->post('customer_email'),
                 );
 
-                $this->Customer_dashboards->insert_send_data($data);
-            }
-            //Shipping data entry
-    		$ship_country_id = $this->session->userdata('ship_country');
-    		$ship_country 	 = $this->db->select('*')
-			        				->from('countries')
-			        				->where('id',$ship_country_id)
-			        				->get()
-			        				->row();
-    		//$ship_short_address = $this->session->userdata('ship_city').','.$this->session->userdata('ship_state').','.$ship_country->name.','.$this->session->userdata('ship_zip');
-            $ship_short_address = $this->input->post('customer_street').', entre '.$this->input->post('customer_between1').' y '.$this->input->post('customer_between2').','.
-                $this->input->post('customer_zip');
+                //Shipping information entry
+                $this->Homes->shipping_entry($shipping);
 
-    		//New customer shipping entry
-    		$shipping=array(
-				'customer_id' 	=> $customer_id,
-				'customer_name' => $this->input->post('customer_name'),
-				'first_name' 	=> $this->input->post('customer_first_lastname'),
-				'last_name' 	=> $this->input->post('customer_secon_lastname'),
-				'customer_short_address'=> $ship_short_address,
-				'state' 		=> $this->input->post('customer_state'),
-				'zip' 			=> $this->input->post('customer_zip'),
-				'customer_mobile'=> $this->input->post('customer_phone_number'),
-				'customer_email' => $this->input->post('customer_email'),
-			);
-
-			//Shipping information entry
-    		$this->Homes->shipping_entry($shipping);
-
-        }
-
-        //Cash on delivery
-    	if ($payment_method == 1) {
-
-    		//Order entry
-            $return_order_id = $this->Homes->order_entry($customer_id,$order_id);
-    		$result   		 = $this->order_inserted_data($return_order_id);
-    		if ($result) {
-    			$this->session->sess_destroy();
-    			redirect('home');
-    		}
-    	}
-
-		//Payment method for bitcoin
-    	if ($payment_method == 3) {
-
-			#========================================================#
-			#========================================================#
-			#============ Bit coin payment method  start ============#
-			#========================================================#
-			#========================================================#
-
-        	// Generated order id
-			$gateway 		= $this->db->select('*')->from('payment_gateway')->where('id',1)->where('status',1)->get()->row();
-
-            $message    	= "";
-            // require_once APPPATH.'libraries/cryptobox/cryptobox.class.php';
-           	require_once APPPATH.'libraries/cryptobox/cryptobox.class.php';
-            $userID         = $customer_id; // place your registered userID or md5(userID) here (user1, user7, uo43DC, etc).
-                                            // you don't need to use userID for unregistered website visitors
-                                            // if userID is empty, system will autogenerate userID and save in cookies
-            $userFormat     = "COOKIE";     // save userID in cookies (or you can use IPADDRESS, SESSION)
-            $orderID        = $order_id;    	// invoice number 22
-            $amountUSD      = $this->session->userdata('cart_total');         // invoice amount - 2.21 USD
-            $period         = "NOEXPIRY";   // one time payment, not expiry
-            $def_language   = "en";         // default Payment Box Language
-            $public_key     = @$gateway->public_key;;   // from gourl.io
-            $private_key    = @$gateway->private_key;;  // from gourl.io
-
-            /** PAYMENT BOX **/
-            $options = array(
-                "public_key"  => $public_key,        // your public key from gourl.io
-                "private_key" => $private_key,       // your private key from gourl.io
-                "webdev_key"  =>  "DEV1124G19CFB313A993D68G453342148",                 // optional, gourl affiliate key
-                "orderID"     => $orderID,           // order id or product name
-                "userID"      => $userID,            // unique identifier for every user
-                "userFormat"  => $userFormat,        // save userID in COOKIE, IPADDRESS or SESSION
-                "amount"      => 0,                  // product price in coins OR in USD below
-                "amountUSD"   => $amountUSD,         // we use product price in USD
-                "period"      => $period,            // payment valid period
-                "language"    => $def_language       // text on EN - english, FR - french, etc
-            );
-
-            // Initialise Payment Class
-            $box = new Cryptobox ($options);
-
-            // Coin name
-            $coinName = $box->coin_name();
-
-            // Payment Received
-            if ($box->is_paid()) 
-            { 
-                $text  = "User will see this message during ".$period." period after payment has been made!"; // Example
-                $text .= "<br>".$box->amount_paid()." ".$box->coin_label()."  received<br>";
-
-            }else {
-                $text  = "The payment has not been made yet";
             }
 
-            // Notification when user click on button 'Refresh'
-            if (isset($_POST["cryptobox_refresh_"]))
-            {
-                $message = "<div class='gourl_msg'>";
-                if (!$box->is_paid()) $message .= '<div style="margin:50px" class="well"><i class="fa fa-info-circle fa-3x fa-pull-left fa-border" aria-hidden="true"></i> '.str_replace(array("%coinName%", "%coinNames%", "%coinLabel%"), array($box->coin_name(), ($box->coin_label()=='DASH'?$box->coin_name():$box->coin_name().'s'), $box->coin_label()), json_decode(CRYPTOBOX_LOCALISATION, true)[CRYPTOBOX_LANGUAGE]["msg_not_received"])."</div>";
-                elseif (!$box->is_processed())
-                {
-                    // User will see this message one time after payment has been made
-                    $message .= '<div style="margin:70px" class="alert alert-success" role="alert"> '.str_replace(array("%coinName%", "%coinLabel%", "%amountPaid%"), array($box->coin_name(), $box->coin_label(), $box->amount_paid()), json_decode(CRYPTOBOX_LOCALISATION, true)[CRYPTOBOX_LANGUAGE][($box->cryptobox_type()=="paymentbox"?"msg_received":"msg_received2")])."</div>";
-                    $box->set_status_processed();
-                }
-                $message .="</div>";
-            }
+            //Cash on delivery
+            if ($payment_method == 1) {
 
-
-            //Payment received confirm
-            $payment = $box->get_json_values();
-            if ($payment['status'] == 'payment_received') {
-            	//Order entry
+                //Order entry
                 $return_order_id = $this->Homes->order_entry($customer_id,$order_id);
-    			$result   		 = $this->order_inserted_data($return_order_id);
-    			$this->cart->destroy();
+                $result   		 = $this->order_inserted_data($return_order_id);
+                if ($result) {
+                    $this->session->sess_destroy();
+                    redirect('home');
+                }
             }
 
+            //Payment method for bitcoin
+            if ($payment_method == 3) {
 
-            //Customizeable code
-            $data = array(
+                #========================================================#
+                #========================================================#
+                #============ Bit coin payment method  start ============#
+                #========================================================#
+                #========================================================#
 
-            	//Settings code start
-				'category_list' => $parent_category_list,
-				'pro_category_list' => $pro_category_list,
-				'slider_list' 	=> $slider_list,
-				'block_list' 	=> $block_list,
-				'best_sales' 	=> $best_sales,
-				'footer_block' 	=> $footer_block,
-				'languages' 	=> $languages,
-				'currency_info' => $currency_info,
-				'select_home_adds' => $select_home_adds,
-				'selected_cur_id' => (($selected_currency_info->currency_id)?$selected_currency_info->currency_id:""),
-				'Soft_settings' => $Soft_settings,
-				'currency' 		=> $currency_details[0]['currency_icon'],
-				'position' 		=> $currency_details[0]['currency_position'],
-				//Setting code end
+                // Generated order id
+                $gateway 		= $this->db->select('*')->from('payment_gateway')->where('id',1)->where('status',1)->get()->row();
 
-				//Bitcoin code
-				'u1'=> $box->cryptobox_json_url(),
-                'u2'=> intval($box->is_paid()),
-                'u3'=> base_url('bitcoin-plug/'),
-                'u4'=> base_url("#"),
+                $message    	= "";
+                // require_once APPPATH.'libraries/cryptobox/cryptobox.class.php';
+                require_once APPPATH.'libraries/cryptobox/cryptobox.class.php';
+                $userID         = $customer_id; // place your registered userID or md5(userID) here (user1, user7, uo43DC, etc).
+                // you don't need to use userID for unregistered website visitors
+                // if userID is empty, system will autogenerate userID and save in cookies
+                $userFormat     = "COOKIE";     // save userID in cookies (or you can use IPADDRESS, SESSION)
+                $orderID        = $order_id;    	// invoice number 22
+                $amountUSD      = $this->session->userdata('cart_total');         // invoice amount - 2.21 USD
+                $period         = "NOEXPIRY";   // one time payment, not expiry
+                $def_language   = "en";         // default Payment Box Language
+                $public_key     = @$gateway->public_key;;   // from gourl.io
+                $private_key    = @$gateway->private_key;;  // from gourl.io
 
-                'coin_name'	=>	$box->coin_name(),
-                'message'	=>	$message,
-                'text'		=>	$text,
-                'title'		=> display('bitcoin_payment'),
-			);
+                /** PAYMENT BOX **/
+                $options = array(
+                    "public_key"  => $public_key,        // your public key from gourl.io
+                    "private_key" => $private_key,       // your private key from gourl.io
+                    "webdev_key"  =>  "DEV1124G19CFB313A993D68G453342148",                 // optional, gourl affiliate key
+                    "orderID"     => $orderID,           // order id or product name
+                    "userID"      => $userID,            // unique identifier for every user
+                    "userFormat"  => $userFormat,        // save userID in COOKIE, IPADDRESS or SESSION
+                    "amount"      => 0,                  // product price in coins OR in USD below
+                    "amountUSD"   => $amountUSD,         // we use product price in USD
+                    "period"      => $period,            // payment valid period
+                    "language"    => $def_language       // text on EN - english, FR - french, etc
+                );
 
-        	#========================================================#
-			#========================================================#
-			#============ Bit coin payment method end ===============#
-			#========================================================#
-			#========================================================#
+                // Initialise Payment Class
+                $box = new Cryptobox ($options);
 
-			$content = $this->parser->parse('website/payment',$data,true);
-        	$this->template->full_website_html_view($content);
-        }
+                // Coin name
+                $coinName = $box->coin_name();
 
-        //Payment method for payeer
-        /*if ($payment_method == 4) {
+                // Payment Received
+                if ($box->is_paid())
+                {
+                    $text  = "User will see this message during ".$period." period after payment has been made!"; // Example
+                    $text .= "<br>".$box->amount_paid()." ".$box->coin_label()."  received<br>";
 
-	        $date = new DateTime();
-			$comment = $customer_id.'/buy/'.$order_id.'/'.$date->format('Y-m-d H:i:s');
+                }else {
+                    $text  = "The payment has not been made yet";
+                }
 
-			$gateway = $this->db->select('*')->from('payment_gateway')->where('id',2)->where('status',1)->get()->row();
+                // Notification when user click on button 'Refresh'
+                if (isset($_POST["cryptobox_refresh_"]))
+                {
+                    $message = "<div class='gourl_msg'>";
+                    if (!$box->is_paid()) $message .= '<div style="margin:50px" class="well"><i class="fa fa-info-circle fa-3x fa-pull-left fa-border" aria-hidden="true"></i> '.str_replace(array("%coinName%", "%coinNames%", "%coinLabel%"), array($box->coin_name(), ($box->coin_label()=='DASH'?$box->coin_name():$box->coin_name().'s'), $box->coin_label()), json_decode(CRYPTOBOX_LOCALISATION, true)[CRYPTOBOX_LANGUAGE]["msg_not_received"])."</div>";
+                    elseif (!$box->is_processed())
+                    {
+                        // User will see this message one time after payment has been made
+                        $message .= '<div style="margin:70px" class="alert alert-success" role="alert"> '.str_replace(array("%coinName%", "%coinLabel%", "%amountPaid%"), array($box->coin_name(), $box->coin_label(), $box->amount_paid()), json_decode(CRYPTOBOX_LOCALISATION, true)[CRYPTOBOX_LANGUAGE][($box->cryptobox_type()=="paymentbox"?"msg_received":"msg_received2")])."</div>";
+                        $box->set_status_processed();
+                    }
+                    $message .="</div>";
+                }
 
-			$data['m_shop'] 	= @$gateway->shop_id;
-		    $data['m_orderid'] 	= $order_id;
-		    $data['m_amount'] 	= number_format($this->session->userdata('cart_total'), 2, '.', '');
-		    $data['m_curr'] 	= 'USD';
-		    $data['m_desc'] 	= base64_encode($comment);
-		    $data['m_key'] 		= @$gateway->secret_key;
-		    $data['user_id']    = @$customer_id;
-		    $data['title']    	= display('payeer_payment');
 
-		    $arHash = array(
-		        $data['m_shop'],
-		        $data['m_orderid'],
-		        $data['m_amount'],
-		        $data['m_curr'],
-		        $data['m_desc']
-		    );
+                //Payment received confirm
+                $payment = $box->get_json_values();
+                if ($payment['status'] == 'payment_received') {
+                    //Order entry
+                    $return_order_id = $this->Homes->order_entry($customer_id,$order_id);
+                    $result   		 = $this->order_inserted_data($return_order_id);
+                    $this->cart->destroy();
+                }
 
-			$arHash[] = $data['m_key'];
-		    $data['sign'] = strtoupper(hash('sha256', implode(':', $arHash)));
 
-		    $content = $this->parser->parse('website/payment',$data,true);
-        	$this->template->full_website_html_view($content);
-        }*/
-        if ($payment_method == 4) {
+                //Customizeable code
+                $data = array(
 
-            $cadena = '';
-            $cadena = $cadena.'<P>';
+                    //Settings code start
+                    'category_list' => $parent_category_list,
+                    'pro_category_list' => $pro_category_list,
+                    'slider_list' 	=> $slider_list,
+                    'block_list' 	=> $block_list,
+                    'best_sales' 	=> $best_sales,
+                    'footer_block' 	=> $footer_block,
+                    'languages' 	=> $languages,
+                    'currency_info' => $currency_info,
+                    'select_home_adds' => $select_home_adds,
+                    'selected_cur_id' => (($selected_currency_info->currency_id)?$selected_currency_info->currency_id:""),
+                    'Soft_settings' => $Soft_settings,
+                    'currency' 		=> $currency_details[0]['currency_icon'],
+                    'position' 		=> $currency_details[0]['currency_position'],
+                    //Setting code end
+
+                    //Bitcoin code
+                    'u1'=> $box->cryptobox_json_url(),
+                    'u2'=> intval($box->is_paid()),
+                    'u3'=> base_url('bitcoin-plug/'),
+                    'u4'=> base_url("#"),
+
+                    'coin_name'	=>	$box->coin_name(),
+                    'message'	=>	$message,
+                    'text'		=>	$text,
+                    'title'		=> display('bitcoin_payment'),
+                );
+
+                #========================================================#
+                #========================================================#
+                #============ Bit coin payment method end ===============#
+                #========================================================#
+                #========================================================#
+
+                $content = $this->parser->parse('website/payment',$data,true);
+                $this->template->full_website_html_view($content);
+            }
+
+            //Payment method for payeer
+            /*if ($payment_method == 4) {
+
+                $date = new DateTime();
+                $comment = $customer_id.'/buy/'.$order_id.'/'.$date->format('Y-m-d H:i:s');
+
+                $gateway = $this->db->select('*')->from('payment_gateway')->where('id',2)->where('status',1)->get()->row();
+
+                $data['m_shop'] 	= @$gateway->shop_id;
+                $data['m_orderid'] 	= $order_id;
+                $data['m_amount'] 	= number_format($this->session->userdata('cart_total'), 2, '.', '');
+                $data['m_curr'] 	= 'USD';
+                $data['m_desc'] 	= base64_encode($comment);
+                $data['m_key'] 		= @$gateway->secret_key;
+                $data['user_id']    = @$customer_id;
+                $data['title']    	= display('payeer_payment');
+
+                $arHash = array(
+                    $data['m_shop'],
+                    $data['m_orderid'],
+                    $data['m_amount'],
+                    $data['m_curr'],
+                    $data['m_desc']
+                );
+
+                $arHash[] = $data['m_key'];
+                $data['sign'] = strtoupper(hash('sha256', implode(':', $arHash)));
+
+                $content = $this->parser->parse('website/payment',$data,true);
+                $this->template->full_website_html_view($content);
+            }*/
+            if ($payment_method == 4) {
+
+                $cadena = '';
+                $cadena = $cadena.'<P>';
                 $cadena = $cadena.'<business>';
-                    /*$cadena = $cadena.'<id_company>SNBX</id_company>';
-                    $cadena = $cadena.'<id_branch>01SNBXBRNCH</id_branch>';
-                    $cadena = $cadena.'<user>SNBXUSR01</user>';
-                    $cadena = $cadena.'<pwd>SECRETO</pwd>';*/
-                    $cadena = $cadena.'<id_company>0596</id_company>';
-                    $cadena = $cadena.'<id_branch>015</id_branch>';
-                    $cadena = $cadena.'<user>0596SIUS0</user>';
-                    $cadena = $cadena.'<pwd>IUYVXX882D</pwd>';
+                /*$cadena = $cadena.'<id_company>SNBX</id_company>';
+                $cadena = $cadena.'<id_branch>01SNBXBRNCH</id_branch>';
+                $cadena = $cadena.'<user>SNBXUSR01</user>';
+                $cadena = $cadena.'<pwd>SECRETO</pwd>';*/
+                $cadena = $cadena.'<id_company>0596</id_company>';
+                $cadena = $cadena.'<id_branch>015</id_branch>';
+                $cadena = $cadena.'<user>0596SIUS0</user>';
+                $cadena = $cadena.'<pwd>IUYVXX882D</pwd>';
                 $cadena = $cadena.'</business>';
                 $cadena = $cadena.'<url>';
-                    $date = new DateTime();
-                    $cadena = $cadena.'<reference>'.$order_id.'</reference>';
-                    $cadena = $cadena.'<amount>'.$this->session->userdata('cart_total').'</amount>';
-                    $cadena = $cadena.'<moneda>MXN</moneda>';
-                    $cadena = $cadena.'<canal>W</canal>';
-                    $cadena = $cadena.'<omitir_notif_default>1</omitir_notif_default>';
-                    $cadena = $cadena.'<promociones>C</promociones>';
-                    $cadena = $cadena.'<st_correo>1</st_correo>';
-                    $cadena = $cadena.'<fh_vigencia>'.$date->format('d/m/Y').'</fh_vigencia>';
-                    $cadena = $cadena.'<mail_cliente>'.$this->session->userdata('customer_email').'</mail_cliente>';
-                    /*$cadena = $cadena.'<datos_adicionales>';
-                        $cadena = $cadena.'<data id="1" display="true">';
-                            $cadena = $cadena.'<label>Talla</label>';
-                            $cadena = $cadena.'<value>Grande</value>';
-                        $cadena = $cadena.'</data>';
-                        $cadena = $cadena.'<data id="2" display="true">';
-                            $cadena = $cadena.'<label>Color</label>';
-                            $cadena = $cadena.'<value>Azul</value>';
-                        $cadena = $cadena.'</data>';
-                    $cadena = $cadena.'</datos_adicionales>';*/
+                $date = new DateTime();
+                $cadena = $cadena.'<reference>'.$order_id.'</reference>';
+                $cadena = $cadena.'<amount>'.$this->session->userdata('cart_total').'</amount>';
+                $cadena = $cadena.'<moneda>MXN</moneda>';
+                $cadena = $cadena.'<canal>W</canal>';
+                $cadena = $cadena.'<omitir_notif_default>1</omitir_notif_default>';
+                $cadena = $cadena.'<promociones>C</promociones>';
+                $cadena = $cadena.'<st_correo>1</st_correo>';
+                $cadena = $cadena.'<fh_vigencia>'.$date->format('d/m/Y').'</fh_vigencia>';
+                $cadena = $cadena.'<mail_cliente>'.$this->session->userdata('customer_email').'</mail_cliente>';
+                /*$cadena = $cadena.'<datos_adicionales>';
+                    $cadena = $cadena.'<data id="1" display="true">';
+                        $cadena = $cadena.'<label>Talla</label>';
+                        $cadena = $cadena.'<value>Grande</value>';
+                    $cadena = $cadena.'</data>';
+                    $cadena = $cadena.'<data id="2" display="true">';
+                        $cadena = $cadena.'<label>Color</label>';
+                        $cadena = $cadena.'<value>Azul</value>';
+                    $cadena = $cadena.'</data>';
+                $cadena = $cadena.'</datos_adicionales>';*/
                 $cadena = $cadena.'</url>';
-            $cadena = $cadena.'</P>';
+                $cadena = $cadena.'</P>';
 
-            //$key = '5dcc67393750523cd165f17e1efadd21';
-            $key = 'A538C3AE407B29A15F949674E4C6FD79';
+                //$key = '5dcc67393750523cd165f17e1efadd21';
+                $key = 'A538C3AE407B29A15F949674E4C6FD79';
 
-            $this->load->library('santander/AESCrypto');
+                $this->load->library('santander/AESCrypto');
 
-            $cadenaEncriptada = $this->aescrypto->encriptar($cadena, $key);
+                $cadenaEncriptada = $this->aescrypto->encriptar($cadena, $key);
 
-            //$encodedString = urlencode('<pgs><data0>SNDBX123</data0><data>'.$cadenaEncriptada.'</data></pgs>');
-            $encodedString = urlencode('<pgs><data0>9265655119</data0><data>'.$cadenaEncriptada.'</data></pgs>');
+                //$encodedString = urlencode('<pgs><data0>SNDBX123</data0><data>'.$cadenaEncriptada.'</data></pgs>');
+                $encodedString = urlencode('<pgs><data0>9265655119</data0><data>'.$cadenaEncriptada.'</data></pgs>');
 
-            //$url = 'https://wppsandbox.mit.com.mx/gen';
-            $url = 'https://bc.mitec.com.mx/p/gen';
+                //$url = 'https://wppsandbox.mit.com.mx/gen';
+                $url = 'https://bc.mitec.com.mx/p/gen';
 
-            $params['xml'] = $encodedString;
+                $params['xml'] = $encodedString;
 
-            $ch = curl_init();
+                $ch = curl_init();
 
 
-            curl_setopt($ch,CURLOPT_URL,$url);
-            curl_setopt($ch,CURLOPT_HTTPHEADER,array('content-type: application/x-www-form-urlencoded'));
-            curl_setopt($ch,CURLOPT_POST,1);
-            curl_setopt($ch,CURLOPT_POSTFIELDS,'xml='.$encodedString);
-            curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
+                curl_setopt($ch,CURLOPT_URL,$url);
+                curl_setopt($ch,CURLOPT_HTTPHEADER,array('content-type: application/x-www-form-urlencoded'));
+                curl_setopt($ch,CURLOPT_POST,1);
+                curl_setopt($ch,CURLOPT_POSTFIELDS,'xml='.$encodedString);
+                curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
 
-            try{
-                $ouput = curl_exec($ch);
+                try{
+                    $ouput = curl_exec($ch);
+                }
+                catch (HttpException $ex)
+                {
+                    echo $ex;
+                }
+
+                curl_close($ch);
+
+                $cadenaDesencriptadaXml = $this->aescrypto->desencriptar($ouput, $key);
+
+                $liga = new DOMDocument;
+
+                $liga->loadXML($cadenaDesencriptadaXml);
+
+                $ligaUrl = $liga->getElementsByTagName('nb_url')->item(0)->nodeValue;
+
+                redirect($ligaUrl);
+
+
             }
-            catch (HttpException $ex)
-            {
-                echo $ex;
+
+            //Payment method for paypal
+            if ($payment_method == 5) {
+                $appSetting = $this->Web_settings->setting();
+
+                // ---------------------
+                //Set variables for paypal form
+                $returnURL = base_url('website/home/success/'.$order_id.'/'.$customer_id); //payment success url
+
+                $cancelURL = base_url("website/home/cancel/"); //payment cancel url
+                $notifyURL = base_url('website/home/ipn/'); //ipn url
+
+                //set session token
+                $this->session->unset_userdata('_tran_token');
+                $this->session->set_userdata(array('_tran_token'=>$order_id));
+
+                $token = $this->session->userdata('_tran_token');
+
+                // set form auto fill data
+                $this->paypal_lib->add_field('return', $returnURL);
+                $this->paypal_lib->add_field('cancel_return', $cancelURL);
+                $this->paypal_lib->add_field('notify_url', $notifyURL);
+
+                // item information
+                $this->paypal_lib->add_field('item_number', $order_id);
+                $this->paypal_lib->add_field('item_name', 'None');
+                $this->paypal_lib->add_field('amount',$this->session->userdata('cart_total'));
+                $this->paypal_lib->add_field('quantity', '1');
+                $this->paypal_lib->add_field('discount_amount', '0');
+
+                // additional information
+                $this->paypal_lib->add_field('custom', 'test');
+                $this->paypal_lib->image(base_url($appSetting[0]['logo']));
+
+                // generates auto form
+                $this->paypal_lib->paypal_auto_form();
             }
-
-            curl_close($ch);
-
-            $cadenaDesencriptadaXml = $this->aescrypto->desencriptar($ouput, $key);
-
-            $liga = new DOMDocument;
-
-            $liga->loadXML($cadenaDesencriptadaXml);
-
-            $ligaUrl = $liga->getElementsByTagName('nb_url')->item(0)->nodeValue;
-
-            redirect($ligaUrl);
-
-
         }
-
-        //Payment method for paypal
-        if ($payment_method == 5) {
-            $appSetting = $this->Web_settings->setting();
-
-        	// ---------------------
-            //Set variables for paypal form
-            $returnURL = base_url('website/home/success/'.$order_id.'/'.$customer_id); //payment success url
-
-            $cancelURL = base_url("website/home/cancel/"); //payment cancel url
-            $notifyURL = base_url('website/home/ipn/'); //ipn url
-
-            //set session token
-            $this->session->unset_userdata('_tran_token');
-            $this->session->set_userdata(array('_tran_token'=>$order_id));
-
-            $token = $this->session->userdata('_tran_token');
-
-            // set form auto fill data
-            $this->paypal_lib->add_field('return', $returnURL);
-            $this->paypal_lib->add_field('cancel_return', $cancelURL);
-            $this->paypal_lib->add_field('notify_url', $notifyURL);
-
-            // item information
-            $this->paypal_lib->add_field('item_number', $order_id);
-            $this->paypal_lib->add_field('item_name', 'None');
-            $this->paypal_lib->add_field('amount',$this->session->userdata('cart_total'));  
-            $this->paypal_lib->add_field('quantity', '1');    
-            $this->paypal_lib->add_field('discount_amount', '0');   
-
-            // additional information 
-            $this->paypal_lib->add_field('custom', 'test');
-            $this->paypal_lib->image(base_url($appSetting[0]['logo']));
-			
-			// generates auto form
-            $this->paypal_lib->paypal_auto_form();
+        else
+        {
+            redirect('login');
         }
-	}
+    }
 
 	public function payeerSuccess() 
 	{
@@ -1253,6 +1259,62 @@ class Home extends CI_Controller {
 
 
     }
+	
+	public function redirectSantander()
+	{
+        if ($this->user_auth->is_logged())
+        {
+            if($this->input->get('nbResponse')=="Rechazado")
+            {
+                $this->session->set_userdata('erro_message','Lo sentimos, tu pago ha sido rechazado por tu banco !');
+                redirect('/checkout');
+            }
+            else if($this->input->get('nbResponse')=="Aprobado")
+            {
+                /*die('La order No. '.$this->input->get('referenciaPayment').' ha sido aprobada con exito !');*/
+                //http://localhost/website/home/success/TJKZNBJKFJOHTWC/UOS82HBMKQ8ZOC8
+                $data['title'] = display('order');
+                #--------------------------------------
+                //get the transaction data
+                // $paypalInfo = $this->input->get();
+
+                //Get order id and customer id
+                $order_id = $this->input->get('referenciaPayment');
+                $customer_id = $this->session->userdata('customer_id');
+                $store_id = $this->session->userdata('store_id');
+
+                //session token
+                $token = $this->session->userdata('_tran_token');
+
+                //pass the transaction data to view
+                $return_order_id = $this->Homes->order_entry($customer_id, $order_id, $store_id);
+                $result = $this->order_inserted_data($return_order_id);
+
+                $order = $this->lorder->order_by_id($order_id);
+
+                $html = $this->generate_html($order);
+
+                $user_email = $this->session->userdata('customer_email');
+                $this->Settings->send_mail($user_email, 'Confirmación de compra', $html);
+
+                if ($result) {
+                    $this->cart->destroy();
+                    $this->session->set_userdata('message', display('product_successfully_order'));
+                    redirect('/checkout_invoice/' . $order_id);
+                }
+            }
+            else
+            {
+                $this->session->set_userdata('erro_message','Lo sentimos, no podemos procesar la compra, si el error se repite, contacte al administardor !');
+                redirect('/checkout');
+            }
+        }
+        else
+        {
+            redirect('/login');
+        }
+
+	}
 
     public function successSantander()
     {

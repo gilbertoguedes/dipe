@@ -281,22 +281,10 @@ if ($this->cart->contents()) { ?>
                             </div>-->
                                     <div class="radio">
                                         <label>
-                                            <input type="radio" name="payment_method" value="4" <?php if ($this->session->userdata('payment_method') == 4 ) { echo "checked = 'checked'"; } ?>>
+                                            <input type="radio" name="payment_method" value="4"  checked="checked" >
                                             <img src="<?php echo base_url('my-assets/image/payeer.png')?>">
                                         </label>
                                     </div>
-                                    <?php } ?>
-
-                                    <?php
-                                    if ($paypal_status == 1) {
-                                        ?>
-                                        <!-- Payeer payment method -->
-                                        <div class="radio">
-                                            <label>
-                                                <input type="radio" name="payment_method" value="5"  checked="checked" /> <!--<?php if ($this->session->userdata('payment_method') == 5 ) { echo "checked = 'checked'"; } ?>-->
-                                                <img src="<?php echo base_url('my-assets/image/paypal.png')?>">
-                                            </label>
-                                        </div>
                                     <?php } ?>
 
                                     <div class="form-group">
