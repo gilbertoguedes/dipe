@@ -27,7 +27,7 @@
 </section>
 <!-- ========================= SECTION CONTENT .END// ========================= -->
 
-<section class="section-content1 bg padding-y-sm dipe-section-content">
+<section class="bg padding-y-sm dipe-section-content">
     <div class="container">
         <div class="card">
             <div class="card-body">
