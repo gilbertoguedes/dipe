@@ -359,6 +359,25 @@ class Homes extends CI_Model {
         }
         return false;
     }
+	
+	public function order_check($data)
+	{
+		$this->db->insert('order_check',$data);
+		
+		return true;
+	}
+	
+	public function order_check_exist($order_id)
+	{
+		$this->db->select('*');
+        $this->db->from('order_check');
+        $this->db->where('order_id',$order_id);
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            return true;
+        }
+        return false;
+	}
 
 	//Order entry
 	public function order_entry($customer_id,$order_id,$store_id){

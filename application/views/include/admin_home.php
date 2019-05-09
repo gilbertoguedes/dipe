@@ -76,7 +76,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+            <!--<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
                 <div class="panel panel-bd">
                     <div class="panel-body">
                         <div class="statistic-box">
@@ -86,10 +86,10 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>-->
             <?php } 
             if($this->session->userdata('user_type') == '4'){ ?>
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+            <!--<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
                 <div class="panel panel-bd">
                     <div class="panel-body">
                         <div class="statistic-box">
@@ -99,12 +99,12 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>-->
             <?php } ?>
         </div>
         <hr>
         <!-- Second Counter -->
-        <div class="row">
+        <!--<div class="row">
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
                 <div class="panel panel-bd">
                     <div class="panel-body">
@@ -167,7 +167,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>-->
         <?php if($this->session->userdata('user_type') == 1){?>
         <!-- Third Counter -->
         <div class="row">

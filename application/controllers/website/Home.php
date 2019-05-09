@@ -1264,7 +1264,8 @@ class Home extends CI_Controller {
 	{
         if ($this->user_auth->is_logged())
         {
-            if($this->input->get('nbResponse')=="Rechazado")
+			 
+			if($this->input->get('nbResponse')=="Rechazado")
             {
                 $this->session->set_userdata('error_message','Lo sentimos, tu pago ha sido rechazado por tu banco !');
                 redirect('/checkout');
@@ -1282,6 +1283,14 @@ class Home extends CI_Controller {
                 $order_id = $this->input->get('referenciaPayment');
                 $customer_id = $this->session->userdata('customer_id');
                 $store_id = $this->session->userdata('store_id');
+				
+				$check = $this->Homes->order_check_exist($order_id);
+				
+				if($check==false)
+				{
+					$this->session->set_userdata('error_message','Error de seguridad en la compra, contacte al administardor !');
+                redirect('/checkout');
+				}
 
                 //session token
                 $token = $this->session->userdata('_tran_token');
@@ -1318,21 +1327,38 @@ class Home extends CI_Controller {
 
     public function successSantander()
     {
+		/*$data = array(
+			'order_id' => 'adasdada'
+		); 
+		$this->Homes->order_check($data);*/
         //http://localhost/website/home/success/TJKZNBJKFJOHTWC/UOS82HBMKQ8ZOC8
         $request  = $this->input->post();
         $strResponse = $request['strResponse'];
         if($strResponse)
         {
-            $pruebaFile = fopen("integracion.txt","w") or die("error");
+            $key = 'A538C3AE407B29A15F949674E4C6FD79';
 
-            fwrite($pruebaFile,$strResponse);
-            fclose($pruebaFile);
+			$this->load->library('santander/AESCrypto');
+
+			$cadenaDesencriptadaXml = $this->aescrypto->desencriptar($strResponse, $key);
+
+			$liga = new DOMDocument;
+
+			$liga->loadXML($cadenaDesencriptadaXml);
+
+			$reponse = $liga->getElementsByTagName('response')->item(0)->nodeValue;
+			
+			if($reponse=="approved")
+			{
+				$order_id = $liga->getElementsByTagName('reference')->item(0)->nodeValue;
+				
+				$data = array(
+					'order_id' => $order_id
+				); 
+				$this->Homes->order_check($data);
+			}
         }
-        else
-        {
-            echo "NO existe el parámetro strResponse";
-        }
-        die();
+        
     }
 
 

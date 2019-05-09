@@ -62,7 +62,7 @@
 
 
     <!-- Chat modulo  -->
-    <script type="text/javascript" src="//condor1178.startdedicated.com/livechat/php/app.php?widget-init.js"></script>
+    <script type="text/javascript" src="//dipepsa.mx/livechat/php/app.php?widget-init.js"></script>
 
     <!-- Include SmartWizard JavaScript source -->
     <script type="text/javascript" src="<?php echo base_url('assets/website/vendor/SmartWizard-master/dist/js/jquery.smartWizard.min.js')?>"></script>

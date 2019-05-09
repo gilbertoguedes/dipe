@@ -17,6 +17,38 @@ class Signup extends CI_Controller {
 	}
 
 	//Submit a user signup.
+	/*public function user_signup()
+	{
+		$customer_id = $this->generator(15);
+		$data=array(
+			'customer_id' 	=> $customer_id,
+			'first_name' 	=> $this->input->post('first_name'),
+			'last_name' 	=> $this->input->post('last_name'),
+			'customer_name' => $this->input->post('first_name').' '.$this->input->post('last_name'),
+			'customer_email'=> $this->input->post('email'),
+			'image' 		=> base_url('assets/dist/img/user.png'),
+			'password' 		=> md5("gef".$this->input->post('password')),
+			'status' 		=> 2,
+		);
+
+        if($this->Signups->user_exist($this->input->post('email')))
+        {
+            $this->session->set_userdata(array('error_message'=>display('user_already_exits')));
+            redirect(base_url('signup'));
+        }
+
+        $result=$this->Signups->user_signup($data);
+
+		if ($result) {
+
+$this->Settings->send_mail($this->input->post('email'),display('activate_user'),$this->config->item('base_url').'activate_user/'.$customer_id);
+			redirect(base_url('user_registered'));
+		}else{
+			$this->session->set_userdata(array('error_message'=>display('you_have_not_sign_up')));
+			redirect(base_url('signup'));
+		}
+	}*/
+	
 	public function user_signup()
 	{
 		$customer_id = $this->generator(15);
@@ -45,7 +77,7 @@ class Signup extends CI_Controller {
 				'message' 		=> display('you_have_successfully_signup'),
 				'customer_email'=> $this->input->post('email'),
 			));*/
-			$this->Settings->send_mail($this->input->post('email'),display('activate_user'),$this->config->item('base_url').'activate_user/'.$customer_id);
+			$this->Settings->send_mail($this->input->post('email'),display('activate_user'),'<a href="'.$this->config->item('base_url').'activate_user/'.$customer_id.'">'.$this->config->item('base_url').'activate_user/'.$customer_id.'</a>');
 			redirect(base_url('user_registered'));
 		}else{
 			$this->session->set_userdata(array('error_message'=>display('you_have_not_sign_up')));

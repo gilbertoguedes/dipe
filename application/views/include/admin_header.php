@@ -550,7 +550,7 @@
 
             <?php if ($this->session->userdata('user_type') == '4') { ?>
                 <!-- Purchase menu start -->
-                <li class="treeview <?php if ($this->uri->segment('1') == ("Cpurchase")) { echo "active";}else{ echo " ";}?>">
+                <!--<li class="treeview <?php if ($this->uri->segment('1') == ("Cpurchase")) { echo "active";}else{ echo " ";}?>">
                     <a href="#">
                         <i class="ti-shopping-cart"></i><span><?php echo display('purchase') ?></span>
                 <span class="pull-right-container">
@@ -561,7 +561,7 @@
                         <li><a href="<?php echo base_url('Cpurchase')?>"><?php echo display('add_purchase') ?></a></li>
                         <li><a href="<?php echo base_url('Cpurchase/manage_purchase')?>"><?php echo display('manage_purchase') ?></a></li>
                     </ul>
-                </li>
+                </li>-->
                 <!-- Order menu start -->
                 <li class="treeview <?php if ($this->uri->segment('1') == ("Corder")) { echo "active";}else{ echo " ";}?>">
                     <a href="#">
@@ -618,14 +618,14 @@
                 <!-- Customer menu end -->               
 
                 <!-- Store Stock -->
-                <li class="treeview <?php if ($this->uri->segment('2') == ("stock_report")) { echo "active";}else{ echo " ";}?>">
+                <!--<li class="treeview <?php if ($this->uri->segment('2') == ("stock_report")) { echo "active";}else{ echo " ";}?>">
                     <a href="<?php echo base_url('Store_invoice/stock_report')?>" target="_blank">
                         <i class="ti-layout-tab-window"></i><span><?php echo display('stock') ?></span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>
                     </a>
-                </li>
+                </li>-->
                 <!-- Store stock end -->
             <?php } ?>
 	    </ul>
